@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baptiste David - Social Media Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#14160b;
+    --bg-2:#1b1e10;
+    --bg-3:#23271611;
+    --olive:#878335;
+    --olive-2:#a8a347;
+    --lime:#cdd24c;
+    --lime-2:#e0e173;
+    --ink:#f4f3e9;
+    --muted:#a7a98f;
+    --line:rgba(205,210,76,0.14);
+    --card:rgba(255,255,255,0.025);
+    --shadow:0 30px 80px -30px rgba(0,0,0,0.7);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+
+  /* ---------- decorative background blobs ---------- */
+  .bg-deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+  .bg-deco .blob{position:absolute;border-radius:50%;filter:blur(10px);opacity:0.5;}
+  .blob-1{width:60vw;height:60vw;top:-26vw;right:-18vw;
+    background:radial-gradient(closest-side, rgba(135,131,53,0.18), transparent 70%);}
+  .blob-2{width:55vw;height:55vw;bottom:-24vw;left:-20vw;
+    background:radial-gradient(closest-side, rgba(135,131,53,0.13), transparent 70%);}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,56px);}
+
+  /* ---------- top bar ---------- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;
+    padding:clamp(22px,3vw,34px) 0;}
+  .brand{display:flex;align-items:baseline;gap:2px;font-family:'Archivo',sans-serif;
+    font-weight:900;font-size:22px;letter-spacing:-0.02em;}
+  .brand .dot{color:var(--lime);}
+  .avail{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);
+    letter-spacing:0.01em;}
+  .avail .led{width:8px;height:8px;border-radius:50%;background:var(--lime);
+    box-shadow:0 0 0 4px rgba(205,210,76,0.16);animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.45;}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding-top:clamp(8px,2vw,24px);}
+
+  /* parallax 3D social logos (hero only) */
+  .floaties{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:visible;}
+  .floaty{position:absolute;will-change:transform,opacity;}
+  .floaty-in{display:block;width:clamp(50px,6.4vw,92px);height:auto;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.45)) drop-shadow(0 4px 8px rgba(0,0,0,.3));
+    animation:bob var(--dur,8s) ease-in-out var(--delay,0s) infinite;}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(var(--rot,0deg));}
+    50%{transform:translateY(-16px) rotate(calc(var(--rot,0deg) * -1));}
+  }
+  @media (max-width:680px){
+    .floaty[data-speed="0.09"], .floaty[data-speed="0.30"]{display:none;}
+    .floaty-in{width:clamp(46px,11vw,62px);}
+  }
+  @media (prefers-reduced-motion:reduce){ .floaty-in{animation:none;} }
+
+  .nameStage{position:relative;display:block;}
+  .giantSvg{position:relative;z-index:2;display:block;width:100%;height:auto;overflow:visible;}
+  .giantSvg text{font-family:'Archivo',sans-serif;font-weight:900;fill:var(--ink);}
+
+  /* squiggle weaving through the name */
+  .squiggle{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:115%;height:auto;pointer-events:none;}
+  .squiggle path{fill:none;stroke:var(--lime);stroke-width:16;stroke-linecap:round;
+    stroke-dasharray:2600;stroke-dashoffset:2600;animation:draw 2.4s cubic-bezier(.6,.1,.2,1) .25s forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* centered cutout portrait overlapping the name */
+  .photoGlow{position:absolute;z-index:2;top:clamp(16px,3.5vw,60px);left:0;right:0;margin-inline:auto;
+    width:clamp(340px,44vw,560px);height:clamp(360px,48vw,620px);border-radius:50%;pointer-events:none;
+    background:radial-gradient(46% 50% at 50% 42%, rgba(10,11,6,.94), rgba(10,11,6,.6) 50%, transparent 72%);
+    filter:blur(16px);}
+  .photoGlow::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(44% 48% at 50% 40%, transparent 58%, rgba(205,210,76,.18) 72%, transparent 82%);}
+  .photo{position:absolute;z-index:3;top:clamp(4px,1.4vw,28px);left:0;right:0;margin-inline:auto;
+    width:clamp(244px,32vw,408px);height:auto;display:block;pointer-events:none;
+    filter:drop-shadow(0 40px 64px rgba(0,0,0,.7)) contrast(1.06);
+    -webkit-mask-image:linear-gradient(180deg,#000 0 52%, rgba(0,0,0,.55) 74%, transparent 90%);
+            mask-image:linear-gradient(180deg,#000 0 52%, rgba(0,0,0,.55) 74%, transparent 90%);}
+  @media (max-width:760px){ .photo{width:clamp(180px,46vw,240px);} .photoGlow{width:280px;height:300px;} .heroCopy{margin-top:150px;} }
+
+  /* hero copy row */
+  .heroCopy{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,80px);
+    margin-top:clamp(28px,4vw,56px);align-items:start;}
+  .lede{font-size:clamp(17px,1.5vw,21px);color:var(--ink);max-width:30ch;font-weight:500;}
+  .lede .hl{color:var(--lime);}
+  .socials{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+  .sicon{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:100px;
+    border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;
+    font-weight:600;background:var(--card);transition:.25s;}
+  .sicon svg{width:18px;height:18px;}
+  .sicon:hover{background:var(--lime);color:#1a1c0c;border-color:var(--lime);transform:translateY(-2px);}
+  .sicon.ghost:hover{background:var(--card);color:var(--ink);border-color:var(--olive-2);transform:translateY(-2px);}
+  .secondary{justify-self:end;text-align:right;max-width:34ch;color:var(--muted);
+    font-size:clamp(14px,1.15vw,16px);line-height:1.65;}
+  @media (max-width:760px){
+    .heroCopy{grid-template-columns:1fr;}
+    .secondary{justify-self:start;text-align:left;}
+  }
+
+  /* ---------- stats strip ---------- */
+  .statsLabel{display:flex;align-items:center;gap:14px;margin:clamp(46px,6vw,80px) 0 22px;}
+  .statsLabel .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;
+    font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);
+    padding:8px 15px;border-radius:100px;}
+  .statsLabel .pill .plus{color:var(--lime);font-weight:800;}
+  .statsLabel .sub{font-size:13px;color:var(--muted);}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,20px);}
+  .stat{position:relative;padding:clamp(20px,2.4vw,30px);border-radius:20px;
+    background:var(--card);border:1px solid var(--line);overflow:hidden;transition:.3s;}
+  .stat:hover{border-color:var(--olive-2);background:rgba(168,163,71,0.06);}
+  .stat .net{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px;
+    font-weight:600;margin-bottom:14px;}
+  .stat .net svg{width:16px;height:16px;}
+  .stat .num{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;
+    font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--ink);}
+  .stat .num .u{color:var(--lime);}
+  .stat .desc{margin-top:8px;font-size:12.5px;color:var(--muted);}
+  @media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- floating nav ---------- */
+  .navwrap{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:40;
+    opacity:0;animation:navrise .9s cubic-bezier(.2,.7,.2,1) .6s forwards;}
+  @keyframes navrise{from{opacity:0;transform:translate(-50%,22px);}to{opacity:1;transform:translateX(-50%);}}
+  .nav{display:flex;align-items:center;gap:4px;padding:7px;border-radius:100px;
+    background:rgba(27,30,16,0.72);border:1px solid var(--line);
+    backdrop-filter:blur(16px);box-shadow:var(--shadow);}
+  .nav a{padding:11px 19px;border-radius:100px;color:var(--muted);text-decoration:none;
+    font-size:14px;font-weight:600;transition:.22s;white-space:nowrap;}
+  .nav a:hover{color:var(--ink);}
+  .nav a.active{background:var(--lime);color:#1a1c0c;}
+  @media (max-width:620px){
+    .nav a{padding:10px 13px;font-size:13px;}
+    .navwrap{bottom:16px;width:calc(100% - 24px);}
+    .nav{justify-content:center;flex-wrap:wrap;}
+  }
+
+  /* ---------- section heading ---------- */
+  .secHead{margin:clamp(60px,9vw,120px) 0 clamp(28px,4vw,46px);}
+  .secHead .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--lime);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;}
+  .secHead .kicker::before{content:"";width:26px;height:1px;background:var(--lime);opacity:.6;}
+  .secHead h2{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.025em;
+    font-size:clamp(32px,5vw,64px);line-height:1.0;}
+  .secHead p{margin-top:14px;color:var(--muted);max-width:54ch;font-size:clamp(15px,1.3vw,17px);}
+
+  /* ---------- réseaux rubriques ---------- */
+  .reseaux{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,18px);}
+  .rubrique{position:relative;text-align:left;cursor:pointer;display:flex;flex-direction:column;
+    gap:16px;padding:clamp(20px,2.2vw,28px);border-radius:22px;background:var(--card);
+    border:1px solid var(--line);color:var(--ink);transition:.28s;overflow:hidden;font:inherit;}
+  .rubrique::after{content:"";position:absolute;inset:0;border-radius:22px;opacity:0;
+    background:radial-gradient(120% 120% at 100% 0%, rgba(205,210,76,0.14), transparent 60%);transition:.28s;}
+  .rubrique:hover{transform:translateY(-4px);border-color:var(--olive-2);}
+  .rubrique:hover::after{opacity:1;}
+  .rubrique .rIcon{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+    background:rgba(205,210,76,0.1);border:1px solid var(--line);color:var(--lime);}
+  .rubrique .rIcon svg{width:24px;height:24px;}
+  .rubrique .rName{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;}
+  .rubrique .rNum{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,32px);
+    letter-spacing:-0.02em;line-height:1;}
+  .rubrique .rNum .u{color:var(--lime);}
+  .rubrique .rGo{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+    color:var(--muted);transition:.25s;margin-top:2px;}
+  .rubrique .rGo svg{width:14px;height:14px;transition:.25s;}
+  .rubrique:hover .rGo{color:var(--lime);}
+  .rubrique:hover .rGo svg{transform:translateX(4px);}
+  @media (max-width:820px){.reseaux{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- filters ---------- */
+  .filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px);}
+  .filter{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;
+    border:1px solid var(--line);background:var(--card);color:var(--muted);font:inherit;
+    font-size:14px;font-weight:600;cursor:pointer;transition:.22s;}
+  .filter svg{width:15px;height:15px;}
+  .filter:hover{color:var(--ink);border-color:var(--olive-2);}
+  .filter.active{background:var(--lime);color:#1a1c0c;border-color:var(--lime);}
+
+  /* ---------- carousel (native scroll snapping) ---------- */
+  .carousel{position:relative;}
+  .stage{position:relative;overflow:hidden;padding:8px 0 4px;}
+  .track{display:flex;align-items:flex-start;gap:clamp(20px,3vw,48px);
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x;
+    scrollbar-width:none;-ms-overflow-style:none;cursor:grab;
+    padding-bottom:4px;}
+  .track::-webkit-scrollbar{display:none;}
+  .track.dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;
+    user-select:none;}
+  .pcard{flex:0 0 auto;width:clamp(264px,27vw,300px);
+    scroll-snap-align:center;scroll-snap-stop:always;
+    opacity:.4;transform:scale(.82);
+    transition:opacity .5s, transform .5s, filter .5s;filter:saturate(.6);
+    display:flex;flex-direction:column;align-items:center;gap:22px;}
+  .track.dragging .pcard{transition:none;}
+  .pcard.active{opacity:1;transform:scale(1);filter:none;}
+
+  /* ---------- iPhone frame ---------- */
+  .iphone{position:relative;width:100%;aspect-ratio:1179/2557;border-radius:46px;
+    background:linear-gradient(160deg,#2a2d1f,#16180e);padding:10px;
+    box-shadow:0 40px 80px -28px rgba(0,0,0,.85), inset 0 0 0 1.5px rgba(255,255,255,0.06);}
+  .screen{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;
+    background:#0c0d07;display:flex;flex-direction:column;}
+  .island{position:absolute;left:50%;top:13px;transform:translateX(-50%);width:84px;height:24px;
+    background:#000;border-radius:100px;z-index:7;}
+  .statusbar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;
+    padding:13px 22px 4px;font-size:12px;font-weight:700;color:#fff;font-family:'Hanken Grotesk',sans-serif;}
+  .statusbar .right{display:flex;gap:6px;align-items:center;}
+  .statusbar svg{height:11px;width:auto;display:block;}
+  .pbadge{position:absolute;top:14px;right:14px;z-index:8;display:inline-flex;align-items:center;gap:6px;
+    padding:6px 11px;border-radius:100px;background:rgba(10,11,6,.62);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.16);color:#fff;font-size:11px;font-weight:700;}
+  .pbadge svg{width:13px;height:13px;}
+
+  /* full screenshot mode */
+  .shot{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+  /* facebook: show the whole post, nothing cropped */
+  .shot--full{object-fit:contain;object-position:center center;background:#f0f2f5;}
+
+  /* ---------- desktop browser frame (Facebook) ---------- */
+  .pcard--wide{width:clamp(340px,44vw,500px);}
+  .browser{width:100%;border-radius:16px;overflow:hidden;background:#fff;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 40px 80px -28px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.04);}
+  .bbar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#dee1e7;
+    border-bottom:1px solid #cfd3db;}
+  .bdots{display:flex;gap:7px;flex:0 0 auto;}
+  .bdots i{width:11px;height:11px;border-radius:50%;background:#c7ccd6;display:block;}
+  .bdots i:nth-child(1){background:#ff5f57;}
+  .bdots i:nth-child(2){background:#febc2e;}
+  .bdots i:nth-child(3){background:#28c840;}
+  .burl{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+    background:#fff;border-radius:8px;padding:6px 12px;font-size:11.5px;color:#65676b;
+    font-weight:600;white-space:nowrap;overflow:hidden;}
+  .burl svg{width:13px;height:13px;color:#1877f2;flex:0 0 auto;}
+  .bspacer{width:46px;flex:0 0 auto;}
+  .bscreen{background:#f0f2f5;display:block;}
+  .shot--browser{width:100%;height:auto;display:block;object-fit:fill;}
+
+  /* app screen generic */
+  .app{flex:1;display:flex;flex-direction:column;min-height:0;color:#fff;
+    font-family:'Hanken Grotesk',sans-serif;}
+  .post-img{width:100%;background:#1b1e10;background-size:cover;background-position:center;
+    position:relative;display:grid;place-items:center;}
+  .post-img .ph{font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.5);text-align:center;
+    padding:0 18px;line-height:1.5;}
+  .post-img .ph b{display:block;font-size:13px;color:rgba(255,255,255,.8);margin-bottom:3px;}
+
+  .avatar{border-radius:50%;background:linear-gradient(135deg,#878335,#cdd24c);flex:0 0 auto;}
+  .skel{background:rgba(255,255,255,.16);border-radius:4px;}
+
+  /* Instagram */
+  .ig-top{display:flex;align-items:center;gap:9px;padding:10px 12px;}
+  .ig-top .avatar{width:30px;height:30px;padding:2px;background:linear-gradient(135deg,#feda75,#d62976,#962fbf);}
+  .ig-top .avatar i{display:block;width:100%;height:100%;border-radius:50%;background:#1b1e10;}
+  .ig-name{font-size:12.5px;font-weight:700;flex:1;}
+  .ig-actions{display:flex;gap:14px;padding:10px 12px 4px;}
+  .ig-actions svg{width:23px;height:23px;}
+  .ig-likes{font-size:12px;font-weight:700;padding:2px 12px;}
+  .ig-cap{font-size:12px;padding:3px 12px 12px;color:rgba(255,255,255,.85);line-height:1.45;}
+  .ig-cap b{font-weight:700;color:#fff;}
+
+  /* Facebook */
+  .fb-top{display:flex;align-items:center;gap:10px;padding:12px;}
+  .fb-top .avatar{width:38px;height:38px;}
+  .fb-name{font-size:13px;font-weight:700;}
+  .fb-sub{font-size:11px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:5px;}
+  .fb-text{font-size:12.5px;padding:0 12px 10px;line-height:1.5;color:rgba(255,255,255,.9);}
+  .fb-bar{display:flex;justify-content:space-around;padding:9px 0;border-top:1px solid rgba(255,255,255,.1);margin-top:auto;}
+  .fb-bar span{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.6);font-weight:600;}
+  .fb-bar svg{width:17px;height:17px;}
+
+  /* TikTok */
+  .tt{position:relative;flex:1;display:flex;}
+  .tt .post-img{flex:1;height:100%;}
+  .tt-top{position:absolute;top:46px;left:0;right:0;display:flex;justify-content:center;gap:20px;z-index:3;
+    font-size:13px;font-weight:600;color:rgba(255,255,255,.7);white-space:nowrap;}
+  .tt-top b{color:#fff;border-bottom:2px solid #fff;padding-bottom:4px;}
+  .tt-rail{position:absolute;right:9px;bottom:78px;display:flex;flex-direction:column;gap:18px;align-items:center;z-index:3;}
+  .tt-rail .it{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#fff;}
+  .tt-rail svg{width:30px;height:30px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
+  .tt-rail .avatar{width:38px;height:38px;border:2px solid #fff;margin-bottom:6px;}
+  .tt-bottom{position:absolute;left:12px;bottom:20px;right:60px;z-index:3;}
+  .tt-bottom .u{font-size:13px;font-weight:800;}
+  .tt-bottom .c{font-size:12px;color:rgba(255,255,255,.9);margin-top:4px;line-height:1.4;}
+
+  /* LinkedIn */
+  .li-top{display:flex;align-items:center;gap:10px;padding:12px;}
+  .li-top .avatar{width:40px;height:40px;}
+  .li-name{font-size:13px;font-weight:700;}
+  .li-head{font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.3;}
+  .li-text{font-size:12.5px;padding:0 12px 10px;line-height:1.5;color:rgba(255,255,255,.9);}
+  .li-bar{display:flex;justify-content:space-around;padding:9px 0;border-top:1px solid rgba(255,255,255,.1);margin-top:auto;}
+  .li-bar span{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.6);font-weight:600;}
+  .li-bar svg{width:16px;height:16px;}
+
+  /* metrics under each phone */
+  .metrics{width:100%;text-align:center;}
+  .ptitle{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.01em;
+    margin-bottom:9px;color:var(--ink);}
+  .pchip{display:inline-block;font-size:11px;font-weight:600;color:var(--lime);
+    background:rgba(205,210,76,.1);border:1px solid var(--line);padding:4px 12px;
+    border-radius:100px;margin-bottom:15px;}
+  .metrics .desc{font-size:13.5px;color:var(--muted);text-align:center;line-height:1.5;
+    margin-bottom:16px;min-height:40px;}
+  .metricRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .metric{padding:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-align:center;}
+  .metric .ml{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .metric .mv{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.2vw,26px);
+    letter-spacing:-0.02em;margin-top:5px;line-height:1;}
+  .metric .mv .u{color:var(--lime);}
+
+  /* carousel controls - overlay arrows */
+  .cNav{position:absolute;top:var(--navY,38%);transform:translateY(-50%);z-index:6;
+    width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(20,22,11,.66);backdrop-filter:blur(10px);
+    color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:.22s;
+    box-shadow:0 14px 34px -12px rgba(0,0,0,.7);}
+  .cNav.prev{left:clamp(4px,2vw,26px);}
+  .cNav.next{right:clamp(4px,2vw,26px);}
+  .cNav:hover{background:var(--lime);color:#1a1c0c;border-color:var(--lime);transform:translateY(-50%) scale(1.06);}
+  .cNav:disabled{opacity:0;pointer-events:none;}
+  .cNav svg{width:22px;height:22px;}
+  .cFoot{display:flex;align-items:center;justify-content:space-between;margin-top:clamp(20px,3vw,34px);gap:24px;}
+  /* progress indicator (replaces per-post dots) */
+  .cProgress{display:flex;align-items:center;gap:16px;flex:1;max-width:420px;}
+  .cCount{font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;
+    color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .cCount .sep{color:var(--muted);margin:0 5px;font-weight:600;}
+  .cCount .tot{color:var(--muted);}
+  .cTrack{position:relative;flex:1;height:4px;border-radius:100px;background:rgba(205,210,76,.16);overflow:hidden;}
+  .cFill{position:absolute;left:0;top:0;height:100%;border-radius:100px;
+    background:linear-gradient(90deg,var(--olive-2),var(--lime));
+    box-shadow:0 0 12px rgba(205,210,76,.5);width:0;transition:width .3s cubic-bezier(.4,0,.2,1);}
+  .emptyState{text-align:center;color:var(--muted);padding:60px 0;font-size:15px;}
+  @media (max-width:620px){
+    .pcard{width:clamp(230px,76vw,280px);}
+    .cFoot{flex-direction:column-reverse;align-items:center;}
+    .cNav{width:44px;height:44px;}
+    .cNav svg{width:19px;height:19px;}
+  }
+
+  .footspace{height:130px;}
+
+  /* ---------- Parcours timeline ---------- */
+  .timeline{position:relative;max-width:880px;margin:0 auto;
+    --spine:clamp(15px,2.2vw,26px);
+    padding-left:clamp(54px,7vw,86px);}
+  .tl-spine{position:absolute;left:var(--spine);top:8px;bottom:8px;width:2px;
+    background:rgba(205,210,76,.13);border-radius:2px;overflow:hidden;}
+  .tl-progress{position:absolute;left:0;top:0;width:100%;height:0;
+    background:linear-gradient(180deg,var(--lime),var(--olive));
+    box-shadow:0 0 16px rgba(205,210,76,.55);transition:height .15s linear;}
+  .tl-item{position:relative;padding-bottom:clamp(34px,4.5vw,60px);
+    opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .tl-item.in{opacity:1;transform:none;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-node{position:absolute;left:var(--spine);top:6px;transform:translateX(-50%);
+    width:18px;height:18px;border-radius:50%;background:var(--bg);
+    border:2px solid var(--olive-2);transition:.35s;z-index:2;}
+  .tl-node::after{content:"";position:absolute;inset:3px;border-radius:50%;
+    background:transparent;transition:.35s;}
+  .tl-item.reached .tl-node{border-color:var(--lime);box-shadow:0 0 0 5px rgba(205,210,76,.12);}
+  .tl-item.reached .tl-node::after{background:var(--lime);}
+  .tl-card{padding:clamp(18px,2.3vw,28px);border-radius:20px;
+    background:var(--card);border:1px solid var(--line);transition:.3s;}
+  .tl-card:hover{border-color:var(--olive-2);background:rgba(168,163,71,.05);}
+  .tl-item.goal .tl-card{background:linear-gradient(135deg,rgba(205,210,76,.14),rgba(135,131,53,.05));
+    border-color:rgba(205,210,76,.32);}
+  .tl-period{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:11px;}
+  .tl-role{font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:clamp(19px,2.3vw,27px);letter-spacing:-.02em;line-height:1.1;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--ink);}
+  .tl-badge{font-family:'Hanken Grotesk',sans-serif;font-size:10.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.07em;color:#1a1c0c;background:var(--lime);
+    padding:4px 10px;border-radius:100px;}
+  .tl-org{display:flex;align-items:center;gap:11px;margin-top:11px;
+    color:var(--ink);font-weight:600;font-size:15px;}
+  .tl-logo{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:#1a1c0c;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--olive-2),var(--lime));}
+  .tl-logo svg{width:18px;height:18px;color:#1a1c0c;}
+  .tl-desc{margin-top:14px;color:var(--muted);line-height:1.65;font-size:14.5px;max-width:62ch;}
+  .tl-skills{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:17px 0 0;padding:0;}
+  .tl-skills li{font-size:12.5px;font-weight:600;color:var(--ink);
+    background:rgba(205,210,76,.08);border:1px solid var(--line);padding:6px 12px;border-radius:100px;}
+  .tl-metric{margin-top:16px;display:inline-flex;align-items:center;gap:10px;
+    padding:11px 16px;border-radius:14px;background:rgba(205,210,76,.09);
+    border:1px solid var(--line);font-size:14px;color:var(--ink);font-weight:600;}
+  .tl-metric svg{width:17px;height:17px;color:var(--lime);}
+  .tl-metric b{font-family:'Archivo',sans-serif;font-weight:800;color:var(--lime);}
+  .tl-cta{margin-top:16px;display:inline-flex;align-items:center;gap:9px;
+    padding:12px 20px;border-radius:100px;background:var(--lime);color:#1a1c0c;
+    text-decoration:none;font-weight:700;font-size:14px;transition:.25s;}
+  .tl-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(205,210,76,.5);}
+  .tl-cta svg{width:16px;height:16px;}
+
+  /* entrance */
+  .rise{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  .d1{animation-delay:.05s;}.d2{animation-delay:.18s;}.d3{animation-delay:.32s;}
+  .d4{animation-delay:.46s;}.d5{animation-delay:.6s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){
+    .rise{opacity:1;transform:none;animation:none;}
+    .navwrap{opacity:1;animation:none;}
+    .squiggle path{stroke-dashoffset:0;animation:none;}
+  }
+</style>
+</head>
+<body>
+  <div class="bg-deco"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+  <div class="grain"></div>
+
+  <div class="wrap">
+    <!-- top bar -->
+    <header class="topbar rise d1">
+      <div class="brand">BD<span class="dot">.</span></div>
+      <div class="avail"><span class="led"></span>Disponible - octobre 2026</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="accueil" data-screen-label="Hero">
+      <div class="floaties" id="floaties" aria-hidden="true">
+        <div class="floaty" data-speed="0.14" style="top:5%;left:3%"><img class="floaty-in" data-logo="instagram" alt="" style="--dur:7.5s;--delay:0s;--rot:-8deg"></div>
+        <div class="floaty" data-speed="0.26" style="top:7%;right:4%"><img class="floaty-in" data-logo="linkedin" alt="" style="--dur:8.5s;--delay:-1.2s;--rot:7deg"></div>
+        <div class="floaty" data-speed="0.09" style="top:34%;left:0%"><img class="floaty-in" data-logo="youtube" alt="" style="--dur:9.2s;--delay:-2.4s;--rot:5deg"></div>
+        <div class="floaty" data-speed="0.20" style="top:25%;right:1%"><img class="floaty-in" data-logo="tiktok" alt="" style="--dur:7.9s;--delay:-0.6s;--rot:-6deg"></div>
+        <div class="floaty" data-speed="0.30" style="top:45%;right:2.5%"><img class="floaty-in" data-logo="facebook" alt="" style="--dur:8.1s;--delay:-3s;--rot:9deg"></div>
+      </div>
+      <div class="photoGlow" aria-hidden="true"></div>
+      <img class="photo" src="assets/baptiste.png" alt="Baptiste David" decoding="async" id="heroPhoto">
+      <div class="nameStage rise d2">
+        <svg class="squiggle" viewBox="0 0 1440 460" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M -40 250 C 180 60, 360 60, 520 230 S 820 430, 1000 250 S 1300 60, 1480 240" />
+        </svg>
+        <svg class="giantSvg" viewBox="0 0 1000 230" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Baptiste David">
+          <text x="500" y="180" text-anchor="middle" font-size="210" textLength="966" lengthAdjust="spacingAndGlyphs" style="letter-spacing:-0.02em">BAPTISTE DAVID</text>
+        </svg>
+      </div>
+
+      <div class="heroCopy">
+        <div class="rise d3">
+          <p class="lede">Je crée du contenu social media qui capte l'attention et fait grandir les communautés - du <span class="hl">concept créatif</span> à la <span class="hl">performance mesurée</span>.</p>
+          <div class="socials">
+            <a class="sicon" href="https://www.linkedin.com/in/baptiste-david-351b65144/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BJqTLIdh%2BR86AmE%2B5ykDl5w%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+              LinkedIn
+            </a>
+            <a class="sicon ghost" href="#contact">Me contacter</a>
+          </div>
+        </div>
+        <p class="secondary rise d3">Du premier brief à l'analyse des KPIs, chaque publication est pensée pour engager, fédérer et générer des résultats concrets. Alternant Social Media Manager chez SANEF, en Mastère Marketing Digital &amp; Communication.</p>
+      </div>
+    </section>
+
+    <!-- RÉSEAUX (rubriques) -->
+    <section id="reseaux" data-screen-label="Réseaux">
+      <div class="secHead">
+        <span class="kicker">Réseaux sociaux</span>
+        <h2>Mes chiffres.</h2>
+        <p>Audience cumulée sur 9 mois - production 100% organique chez SANEF. Clique sur une rubrique pour voir les réalisations produites pour chaque plateforme.</p>
+      </div>
+      <div class="reseaux" id="reseaux-grid"></div>
+    </section>
+
+    <!-- RÉALISATIONS -->
+    <section id="realisations" data-screen-label="Réalisations">
+      <div class="secHead">
+        <span class="kicker">Réalisations</span>
+        <h2>Les posts, dans leur<br/>contexte natif.</h2>
+        <p>Glisse les mockups à la souris ou navigue avec les flèches. Chaque visuel est présenté tel qu'il apparaît dans son application, avec ses métriques.</p>
+      </div>
+
+      <div class="filters" id="filters"></div>
+
+      <div class="carousel">
+        <div class="stage" id="stage">
+          <div class="track" id="track"></div>
+          <button class="cBtn cNav prev" id="prevBtn" aria-label="Précédent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="cBtn cNav next" id="nextBtn" aria-label="Suivant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="emptyState" id="emptyState" hidden>Aucune réalisation pour ce filtre pour le moment.</div>
+
+        <div class="cFoot">
+          <div class="cProgress">
+            <div class="cCount"><span class="cur" id="cCur">01</span><span class="sep">/</span><span class="tot" id="cTot">01</span></div>
+            <div class="cTrack"><div class="cFill" id="cFill"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section id="parcours" data-screen-label="Parcours">
+      <div class="secHead">
+        <span class="kicker">Parcours</span>
+        <h2>Le fil de mon<br/>expérience.</h2>
+        <p>Deux années d'alternance en Bac+5, au service de grandes marques - de la mutuelle santé à l'autoroute.</p>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="tl-spine"><div class="tl-progress" id="tlProgress"></div></div>
+
+        <article class="tl-item goal">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-period">À partir d'octobre 2026</div>
+            <div class="tl-role">Ouvert aux opportunités</div>
+            <p class="tl-desc">À l'issue de mon Mastère, je recherche un poste de <strong style="color:var(--ink)">Social Media Manager</strong> ou <strong style="color:var(--ink)">Chargé de communication digitale</strong> pour continuer à faire grandir des marques et leurs communautés.</p>
+            <a class="tl-cta" href="#contact">Me contacter
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="tl-item">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-period">Sept. 2025 - Oct. 2026</div>
+            <div class="tl-role">Social Media Manager <span class="tl-badge">Alternance</span></div>
+            <div class="tl-org"><span class="tl-logo">S</span> SANEF - Concessionnaire &amp; gestionnaire d'autoroutes</div>
+            <p class="tl-desc">Pilotage de la ligne éditoriale sur 6 réseaux : conception de concepts créatifs, production et programmation des contenus, animation et modération des communautés, puis analyse des performances pour optimiser la stratégie.</p>
+            <ul class="tl-skills">
+              <li>Ligne éditoriale multi-réseaux</li>
+              <li>Community management</li>
+              <li>Veille &amp; tendances</li>
+              <li>Concepts créatifs</li>
+              <li>Reporting &amp; KPIs (Excel, GA)</li>
+              <li>Site corporate</li>
+            </ul>
+            <div class="tl-metric">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>
+              <span><b>3,67 M</b> d'audience cumulée en 9 mois · 100% organique</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tl-item">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-period">Sept. 2024 - Aoû. 2025</div>
+            <div class="tl-role">Chargé de communication digitale <span class="tl-badge">Alternance</span></div>
+            <div class="tl-org"><span class="tl-logo">H</span> Harmonie Mutuelle - 1<sup>re</sup> mutuelle santé de France</div>
+            <p class="tl-desc">Production de contenus digitaux et animation des réseaux sociaux pour accompagner la communication de la marque et renforcer le lien avec ses publics.</p>
+            <ul class="tl-skills">
+              <li>Contenus digitaux</li>
+              <li>Réseaux sociaux</li>
+              <li>Communication de marque</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tl-item">
+          <div class="tl-node"></div>
+          <div class="tl-card">
+            <div class="tl-period">2024 - 2026</div>
+            <div class="tl-role">Manager Marketing Digital, Communication &amp; Événementiel <span class="tl-badge">Bac+5</span></div>
+            <div class="tl-org">
+              <span class="tl-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18V17c0 1.66 3.13 3 7 3s7-1.34 7-3v-3.82l-7 3.18-7-3.18z"/></svg></span>
+              Mastère en alternance
+            </div>
+            <p class="tl-desc">Formation spécialisée en stratégie de marque, marketing digital, communication et événementiel - menée en alternance sur deux ans.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="footspace"></div>
+  </div>
+
+  <script src="assets/logos.js"></script>
+  <script>
+  (function(){
+    /* ============ DATA - Réalisations Instagram (production SANEF) ============ */
+    /* Pour ajouter Facebook / TikTok / LinkedIn : nouvelle entrée avec shot:"chemin/image" */
+    var POSTS = [
+      { plateforme:"instagram", shot:"uploads/Accidents%20sur%20l'autoroute.PNG", titre:"Accidents sur l'autoroute", theme:"Face cachée", vues:12789, reach:6900 },
+      { plateforme:"instagram", shot:"uploads/Insolite%20serpent.PNG", titre:"Le serpent mystère", theme:"Insolite", vues:27772, reach:15737 },
+      { plateforme:"instagram", shot:"uploads/Sauvetage%20spitz.jpeg", titre:"Sauvetage d'un spitz", theme:"Insolite", vues:27510, reach:19600 },
+      { plateforme:"instagram", shot:"uploads/Fourgons.PNG", titre:"Dans les coulisses : les fourgons", theme:"Face cachée", vues:24748, reach:19174 },
+      { plateforme:"instagram", shot:"uploads/IMG_6659.PNG", titre:"Quiz - Est-ce que ?", theme:"Insolite", vues:120000, reach:null },
+      { plateforme:"instagram", shot:"uploads/travaux%20bretelle%20A1.PNG", titre:"Travaux bretelle A1", theme:"Face cachée", vues:89577, reach:58065 },
+      { plateforme:"instagram", shot:"uploads/Corridor%20de%20se%CC%81curite%CC%81.PNG", titre:"Corridor de sécurité", theme:"Sécurité routière", vues:11526, reach:6410 },
+      { plateforme:"instagram", shot:"uploads/Neige%20de%CC%81but%20Janvier%201.PNG", titre:"Neige début janvier", theme:"Vie du réseau", vues:11269, reach:7509 },
+      { plateforme:"instagram", shot:"uploads/IA%20Fourgon.PNG", titre:"IA - Sanefus Prime", theme:"Insolite", vues:6968, reach:4578 },
+      { plateforme:"instagram", shot:"uploads/Nid%20de%20poule%20chausse%CC%81e.PNG", titre:"Rebouchage de nid de poule", theme:"Vie du réseau", vues:6140, reach:2884 },
+      { plateforme:"instagram", shot:"uploads/Peintures%20aires%20les%20Genie%CC%80vres%20A4.PNG", titre:"Peintures - aire des Genièvres", theme:"Insolite", vues:5810, reach:2605 },
+      { plateforme:"instagram", shot:"uploads/Travaux.PNG", titre:"Chantier de nuit sur l'A1", theme:"Vie du réseau", vues:3887, reach:1935 },
+      { plateforme:"instagram", shot:"uploads/OTH.PNG", titre:"Ouvrage hydraulique", theme:"Face cachée", vues:2766, reach:1758 },
+      { plateforme:"instagram", shot:"uploads/Quiz%20Pont.PNG", titre:"Quiz - les piles du pont", theme:"Face cachée", vues:2609, reach:1512 },
+      { plateforme:"instagram", shot:"uploads/Neige%20de%CC%81but%20Janvier%202.PNG", titre:"Les saleuses en action", theme:"Vie du réseau", vues:2542, reach:1875 },
+      { plateforme:"instagram", shot:"uploads/Le%20tigre%20.PNG", titre:"Le tigre", theme:"Face cachée", vues:2307, reach:1501 },
+      { plateforme:"instagram", shot:"uploads/Rater%20sa%20sortie.PNG", titre:"Rater sa sortie", theme:"Insight", vues:2295, reach:1586 },
+      { plateforme:"instagram", shot:"uploads/Taille%20bord%20d'autoroute.PNG", titre:"Taille des bords d'autoroute", theme:"Vie du réseau", vues:2053, reach:912 },
+      { plateforme:"instagram", shot:"uploads/Archives.PNG", titre:"Quand naissaient les autoroutes", theme:"Insolite", vues:1892, reach:1273 },
+      { plateforme:"instagram", shot:"uploads/Immersion%20radio.PNG", titre:"Immersion radio Sanef 107.7", theme:"Vie de la radio", vues:1544, reach:1105 },
+      { plateforme:"instagram", shot:"uploads/IMG_6658.PNG", titre:"Coulisses du réseau", theme:"Face cachée", vues:15700, reach:null },
+      { plateforme:"instagram", shot:"uploads/Renovation%20chausse%CC%81e.PNG", titre:"Rénovation de chaussée", theme:"Vie du réseau", vues:null, reach:null },
+
+      /* ============ Facebook (production SANEF) ============ */
+      { plateforme:"facebook", shot:"assets/posts/fb-insolite.png", titre:"Le serpent de l'autoroute", theme:"Insolite", vues:1029677, reach:628040 },
+      { plateforme:"facebook", shot:"assets/posts/fb-accidents.png", titre:"Le métier d'agent autoroutier", theme:"Face cachée", vues:552200, reach:376544 },
+      { plateforme:"facebook", shot:"assets/posts/fb-bretelle.png", titre:"Remplacement des panneaux sur l'A1", theme:"Vie du réseau", vues:310080, reach:239222 },
+      { plateforme:"facebook", shot:"assets/posts/fb-pmv.png", titre:"Le panneau à message variable", theme:"Face cachée", vues:199073, reach:150077 },
+      { plateforme:"facebook", shot:"assets/posts/fb-nid.png", titre:"Rebouchage de nid de poule", theme:"Vie du réseau", vues:182559, reach:128152 },
+      { plateforme:"facebook", shot:"assets/posts/fb-fourgons.png", titre:"Dans les coulisses : les fourgons", theme:"Face cachée", vues:100332, reach:83000 },
+      { plateforme:"facebook", shot:"assets/posts/fb-ia.png", titre:"Sanefus Prime, le fourgon IA", theme:"Insolite", vues:109567, reach:76123 },
+      { plateforme:"facebook", shot:"assets/posts/fb-cone.png", titre:"À quoi sert le cône ?", theme:"Face cachée", vues:95258, reach:74454 },
+      { plateforme:"facebook", shot:"assets/posts/fb-archives.png", titre:"Quand naissaient les autoroutes", theme:"Insolite", vues:83759, reach:64532 },
+      { plateforme:"facebook", shot:"assets/posts/fb-hydro.png", titre:"Nettoyage post-accident", theme:"Sécurité routière", vues:55752, reach:55752 },
+      { plateforme:"facebook", shot:"assets/posts/fb-neige2.png", titre:"Les saleuses en action", theme:"Vie du réseau", vues:44376, reach:36714 },
+      { plateforme:"facebook", shot:"assets/posts/fb-corridor.png", titre:"Le corridor de sécurité", theme:"Sécurité routière", vues:43100, reach:30189 },
+      { plateforme:"facebook", shot:"assets/posts/fb-neige1.png", titre:"Alerte neige sur le réseau", theme:"Sécurité routière", vues:32214, reach:27015 },
+      { plateforme:"facebook", shot:"assets/posts/fb-peintures.png", titre:"Découverte à l'aire des Genièvres", theme:"Insolite", vues:38195, reach:25025 },
+      { plateforme:"facebook", shot:"assets/posts/fb-rosny.png", titre:"L'aire de Rosny Sud", theme:"Vie du réseau", vues:30213, reach:22073 },
+      { plateforme:"facebook", shot:"assets/posts/fb-travaux.png", titre:"Chantier de nuit sur l'A1", theme:"Vie du réseau", vues:28290, reach:20557 },
+      { plateforme:"facebook", shot:"assets/posts/fb-couche.png", titre:"Les couches d'une autoroute", theme:"Face cachée", vues:24200, reach:16800 },
+      { plateforme:"facebook", shot:"assets/posts/fb-oth.png", titre:"Curage d'un ouvrage hydraulique", theme:"Face cachée", vues:20134, reach:14252 },
+      { plateforme:"facebook", shot:"assets/posts/fb-taille.png", titre:"Taille des bords d'autoroute", theme:"Vie du réseau", vues:19576, reach:14097 },
+      { plateforme:"facebook", shot:"assets/posts/fb-totem.png", titre:"Le totem Bienvenue 107.7", theme:"Insolite", vues:26000, reach:12820 },
+      { plateforme:"facebook", shot:"assets/posts/fb-radio.png", titre:"Immersion radio Sanef 107.7", theme:"Vie de la radio", vues:10394, reach:8504 },
+      { plateforme:"facebook", shot:"assets/posts/fb-rater.png", titre:"Rater sa sortie d'autoroute", theme:"Insight", vues:8477, reach:7310 },
+      { plateforme:"facebook", shot:"assets/posts/fb-spitz.png", titre:"Sauvetage d'un spitz", theme:"Insolite", vues:1852, reach:1110 }
+    ];
+
+    /* ============ ICONS ============ */
+    var IC = {
+      instagram:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.8 5.8 0 0 0-2.13 1.38A5.8 5.8 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.8 5.8 0 0 0 1.38 2.13 5.8 5.8 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.8 5.8 0 0 0 2.13-1.38 5.8 5.8 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.8 5.8 0 0 0-1.38-2.13A5.8 5.8 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>',
+      facebook:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.88 11.85v-8.38H7.08V12h3.04V9.36c0-3 1.79-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.95.92-1.95 1.87V12h3.32l-.53 3.47h-2.79v8.38A12 12 0 0 0 24 12z"/></svg>',
+      tiktok:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.3 0 .59.05.86.13V9.4a6.33 6.33 0 0 0-1-.05A6.34 6.34 0 0 0 5.6 20.87a6.34 6.34 0 0 0 10.86-4.43v-6.9a8.16 8.16 0 0 0 4.77 1.53v-3.4a4.85 4.85 0 0 1-1.64-.18z"/></svg>',
+      linkedin:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>',
+      arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      globe:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.6 15.6 0 0 0-1.38-3.56A8 8 0 0 1 18.93 8zM12 4c.83 1.2 1.48 2.53 1.91 4h-3.82A13.7 13.7 0 0 1 12 4zM4.26 14a7.96 7.96 0 0 1 0-4h3.38a16.6 16.6 0 0 0 0 4zm.81 2h2.95c.34 1.27.81 2.47 1.38 3.56A8 8 0 0 1 5.07 16zm2.95-8H5.07a8 8 0 0 1 4.33-3.56C8.83 5.53 8.36 6.73 8.02 8zM12 20c-.83-1.2-1.48-2.53-1.91-4h3.82A13.7 13.7 0 0 1 12 20zm2.34-6H9.66a14.3 14.3 0 0 1 0-4h4.68a14.3 14.3 0 0 1 0 4zm.27 5.56c.57-1.09 1.04-2.29 1.38-3.56h2.95a8 8 0 0 1-4.33 3.56zM16.36 14a16.6 16.6 0 0 0 0-4h3.38a7.96 7.96 0 0 1 0 4z"/></svg>',
+      igHeart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>',
+      igComment:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>',
+      igShare:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>',
+      fbLike:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zm0 0l4-8a2 2 0 0 1 2 2v3h5a2 2 0 0 1 2 2.3l-1.3 7A2 2 0 0 1 17 20H7"/></svg>',
+      fbComment:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>',
+      fbShare:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v14"/></svg>',
+      ttHeart:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.3-10-10A5 5 0 0 1 12 6a5 5 0 0 1 10 5c-2 4.7-10 10-10 10z"/></svg>',
+      ttComment:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>',
+      ttShare:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>',
+      liLike:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zm0 0l4-8a2 2 0 0 1 2 2v3h5a2 2 0 0 1 2 2.3l-1.3 7A2 2 0 0 1 17 20H7"/></svg>',
+      liComment:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>',
+      liRepost:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>',
+      liSend:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>'
+    };
+
+    var META = {
+      instagram:{ name:"Instagram", num:"615", u:"K", aud:"615 K" },
+      facebook:{ name:"Facebook", num:"2,99", u:"M", aud:"2,99 M" },
+      tiktok:{ name:"TikTok", num:"45", u:"K", aud:"45 K" },
+      linkedin:{ name:"LinkedIn", num:"16,9", u:"K", aud:"Réseau pro" }
+    };
+
+    var statusBar = '<div class="statusbar"><span>9:41</span><span class="right">'+
+      '<svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1.5" width="3" height="10.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".4"/></svg>'+
+      '<svg viewBox="0 0 20 14" fill="currentColor"><path d="M10 3.5c2.3 0 4.4.9 6 2.4l1.2-1.3A11 11 0 0 0 10 1.4 11 11 0 0 0 2.8 4.6L4 5.9A8.6 8.6 0 0 1 10 3.5zM10 7c1.3 0 2.5.5 3.4 1.4l1.3-1.3A6.7 6.7 0 0 0 10 5a6.7 6.7 0 0 0-4.7 2.1l1.3 1.3A4.8 4.8 0 0 1 10 7zm0 3.4l1.9-2a2.7 2.7 0 0 0-3.8 0l1.9 2z"/></svg>'+
+      '<svg viewBox="0 0 26 13" fill="none"><rect x="1" y="1" width="21" height="11" rx="3" stroke="currentColor" opacity=".5"/><rect x="3" y="3" width="16" height="7" rx="1.5" fill="currentColor"/><rect x="23.5" y="4.5" width="1.8" height="4" rx="1" fill="currentColor" opacity=".5"/></svg>'+
+      '</span></div>';
+
+    function imgBlock(p, h){
+      var style = p.image_url ? 'background-image:url(\''+p.image_url+'\');' : '';
+      var ph = p.image_url ? '' : '<span class="ph"><b>Visuel du post</b>à intégrer</span>';
+      return '<div class="post-img" style="'+(h?'height:'+h+';':'')+style+'">'+ph+'</div>';
+    }
+
+    function renderApp(p){
+      var pf = p.plateforme;
+      if(pf==="instagram"){
+        return '<div class="app" style="background:#000">'+
+          '<div class="ig-top"><div class="avatar"><i></i></div><span class="ig-name">sanef_officiel</span></div>'+
+          imgBlock(p,'62%')+
+          '<div class="ig-actions" style="color:#fff">'+IC.igHeart+IC.igComment+IC.igShare+'</div>'+
+          '<div class="ig-likes">14 280 J\u2019aime</div>'+
+          '<div class="ig-cap"><b>sanef_officiel</b> '+p.description+'</div>'+
+        '</div>';
+      }
+      if(pf==="facebook"){
+        return '<div class="app" style="background:#000">'+
+          '<div class="fb-top"><div class="avatar"></div><div><div class="fb-name">SANEF</div>'+
+          '<div class="fb-sub">2 j \u00b7 '+IC.globe+'</div></div></div>'+
+          '<div class="fb-text">'+p.description+'</div>'+
+          imgBlock(p,'46%')+
+          '<div class="fb-bar"><span>'+IC.fbLike+'J\u2019aime</span><span>'+IC.fbComment+'Commenter</span><span>'+IC.fbShare+'Partager</span></div>'+
+        '</div>';
+      }
+      if(pf==="tiktok"){
+        return '<div class="app" style="background:#000"><div class="tt">'+
+          imgBlock(p,'100%')+
+          '<div class="tt-top"><span>Abonnements</span><b>Pour toi</b></div>'+
+          '<div class="tt-rail">'+
+            '<div class="avatar"></div>'+
+            '<div class="it">'+IC.ttHeart+'<span>32,4K</span></div>'+
+            '<div class="it">'+IC.ttComment+'<span>418</span></div>'+
+            '<div class="it">'+IC.ttShare+'<span>1,2K</span></div>'+
+          '</div>'+
+          '<div class="tt-bottom"><div class="u">@sanef</div><div class="c">'+p.description+'</div></div>'+
+        '</div></div>';
+      }
+      // linkedin
+      return '<div class="app" style="background:#000">'+
+        '<div class="li-top"><div class="avatar"></div><div><div class="li-name">SANEF</div>'+
+        '<div class="li-head">Concessionnaire autoroutier \u00b7 12 458 abonn\u00e9s<br/>3 j</div></div></div>'+
+        '<div class="li-text">'+p.description+'</div>'+
+        imgBlock(p,'42%')+
+        '<div class="li-bar"><span>'+IC.liLike+'J\u2019aime</span><span>'+IC.liComment+'Comm.</span><span>'+IC.liRepost+'Republier</span><span>'+IC.liSend+'Envoyer</span></div>'+
+      '</div>';
+    }
+
+    function card(p, idx){
+      var m = META[p.plateforme];
+      var el = document.createElement('div');
+      var isFb = p.plateforme==="facebook";
+      el.className = 'pcard'+(isFb?' pcard--wide':'');
+      var srcAttr = idx < 2 ? 'src="'+p.shot+'"' : 'data-src="'+p.shot+'"';
+
+      var frame;
+      if(isFb){
+        frame =
+          '<div class="browser">'+
+            '<div class="bbar">'+
+              '<div class="bdots"><i></i><i></i><i></i></div>'+
+              '<div class="burl">'+IC.facebook+'facebook.com/sanef1077</div>'+
+              '<div class="bspacer"></div>'+
+            '</div>'+
+            '<div class="bscreen"><img class="shot shot--browser" '+srcAttr+' alt="'+(p.titre||'')+'" decoding="async"></div>'+
+          '</div>';
+      } else {
+        var screen = p.shot
+          ? '<img class="shot" '+srcAttr+' alt="'+(p.titre||'')+'" decoding="async">'
+          : statusBar+renderApp(p);
+        frame =
+          '<div class="iphone"><div class="island"></div>'+
+            '<span class="pbadge">'+IC[p.plateforme]+m.name+'</span>'+
+            '<div class="screen">'+screen+'</div>'+
+          '</div>';
+      }
+
+      el.innerHTML =
+        frame+
+        '<div class="metrics">'+
+          (p.titre?'<div class="ptitle">'+p.titre+'</div>':'')+
+          (p.theme?'<span class="pchip">'+p.theme+'</span>':'')+
+          '<div class="metricRow">'+
+            '<div class="metric"><div class="ml">Vues</div><div class="mv">'+fmtNum(p.vues)+'</div></div>'+
+            '<div class="metric"><div class="ml">Comptes touchés</div><div class="mv">'+fmtNum(p.reach)+'</div></div>'+
+          '</div>'+
+        '</div>';
+      return el;
+    }
+    function fmtNum(n){
+      if(n==null||n==="") return '<span style="color:var(--muted)">-</span>';
+      n = +n;
+      if(n>=1000000){
+        var mm = (n/1000000).toFixed(2).replace('.',',').replace(/,?0+$/,'');
+        return mm+' <span class="u">M</span>';
+      }
+      if(n>=1000){
+        var kk = (n/1000).toFixed(1).replace('.',',').replace(/,0$/,'');
+        return kk+' <span class="u">K</span>';
+      }
+      return String(n);
+    }
+
+    /* ============ FILTERS ============ */
+    var FILTERS = [
+      {key:"all", label:"Tous", icon:null},
+      {key:"instagram", label:"Instagram", icon:"instagram"},
+      {key:"facebook", label:"Facebook", icon:"facebook"},
+      {key:"tiktok", label:"TikTok", icon:"tiktok"}
+    ];
+    var filtersEl = document.getElementById('filters');
+    FILTERS.forEach(function(f){
+      var b = document.createElement('button');
+      b.className = 'filter'+(f.key==="all"?' active':'');
+      b.dataset.key = f.key;
+      b.innerHTML = (f.icon?IC[f.icon]:'')+'<span>'+f.label+'</span>';
+      b.addEventListener('click', function(){ setFilter(f.key); });
+      filtersEl.appendChild(b);
+    });
+
+    /* ============ RÉSEAUX rubriques ============ */
+    var rg = document.getElementById('reseaux-grid');
+    ["instagram","facebook","tiktok"].forEach(function(k){
+      var m = META[k];
+      var count = POSTS.filter(function(p){return p.plateforme===k;}).length;
+      var b = document.createElement('button');
+      b.className = 'rubrique';
+      b.innerHTML =
+        '<div class="rIcon">'+IC[k]+'</div>'+
+        '<div><div class="rName">'+m.name+'</div></div>'+
+        '<div class="rNum">'+(k==="linkedin"?'<span style="font-size:.62em">Réseau pro</span>':m.num+'<span class="u">'+m.u+'</span>')+'</div>'+
+        '<span class="rGo">'+(count>0?count+' réalisation'+(count>1?'s':''):'Bientôt en ligne')+' '+IC.arrow+'</span>';
+      b.addEventListener('click', function(){
+        setFilter(k);
+        document.getElementById('realisations').scrollIntoView({behavior:'smooth', block:'start'});
+      });
+      rg.appendChild(b);
+    });
+
+    /* ============ CAROUSEL ============ */
+    var track = document.getElementById('track');
+    var stage = track.parentElement;
+    var cCur = document.getElementById('cCur');
+    var cTot = document.getElementById('cTot');
+    var cFill = document.getElementById('cFill');
+    var emptyEl = document.getElementById('emptyState');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var current = 0, items = [], cards = [];
+
+    function setFilter(key){
+      [].forEach.call(filtersEl.children, function(b){
+        b.classList.toggle('active', b.dataset.key===key);
+      });
+      items = key==="all" ? POSTS.slice() : POSTS.filter(function(p){return p.plateforme===key;});
+      build();
+    }
+
+    function build(){
+      track.innerHTML=''; cards=[];
+      var has = items.length>0;
+      emptyEl.hidden = has;
+      stage.style.display = has ? '' : 'none';
+      document.querySelector('.cFoot').style.display = has ? '' : 'none';
+      if(!has) return;
+      items.forEach(function(p,i){
+        var c = card(p, i);
+        c.addEventListener('click', function(){ if(i!==current) go(i); });
+        track.appendChild(c); cards.push(c);
+      });
+      cTot.textContent = ('0'+items.length).slice(-2);
+      current = 0;
+      requestAnimationFrame(function(){
+        applyPadding();
+        snapTo(0, false);
+        updateActive();
+      });
+    }
+
+    function ensureLoaded(i){
+      if(i<0 || i>=cards.length) return;
+      var img = cards[i].querySelector('img.shot');
+      if(img && !img.getAttribute('src') && img.dataset.src){ img.src = img.dataset.src; }
+      if(img && !img.dataset.posbound){
+        img.dataset.posbound = '1';
+        img.addEventListener('load', function(){ if(cards[current]===cards[i]) positionArrows(); });
+      }
+    }
+
+    /* center-pad so first & last cards can rest in the middle */
+    function applyPadding(){
+      if(!cards.length) return;
+      var pad = Math.max(0, (track.clientWidth - cards[0].offsetWidth) / 2);
+      track.style.paddingLeft = pad + 'px';
+      track.style.paddingRight = pad + 'px';
+      positionArrows();
+    }
+    function positionArrows(){
+      if(!cards.length) return;
+      var ip = cards[current] && cards[current].querySelector('.iphone, .browser');
+      if(!ip) return;
+      var y = ip.offsetTop + ip.offsetHeight/2;
+      stage.style.setProperty('--navY', y + 'px');
+    }
+    function cardCenter(i){ return cards[i].offsetLeft + cards[i].offsetWidth/2; }
+    function targetScroll(i){ return cardCenter(i) - track.clientWidth/2; }
+    function centerIndex(){
+      var mid = track.scrollLeft + track.clientWidth/2, best=0, bd=Infinity;
+      for(var i=0;i<cards.length;i++){ var d=Math.abs(cardCenter(i)-mid); if(d<bd){bd=d;best=i;} }
+      return best;
+    }
+
+    function updateActive(){
+      var idx = centerIndex();
+      current = idx;
+      cards.forEach(function(c,i){ c.classList.toggle('active', i===idx); });
+      if(cCur) cCur.textContent = ('0'+(idx+1)).slice(-2);
+      if(cFill) cFill.style.width = (cards.length>1 ? (idx/(cards.length-1))*100 : 100) + '%';
+      for(var d=-2; d<=2; d++){ ensureLoaded(idx+d); }
+      prevBtn.disabled = idx===0;
+      nextBtn.disabled = idx===cards.length-1;
+      positionArrows();
+    }
+
+    var programmatic=false, animId=null;
+    function easeInOut(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
+    function animateTo(left){
+      cancelAnimationFrame(animId);
+      track.classList.add('dragging');           /* suspend CSS snap during anim */
+      var start=track.scrollLeft, dist=left-start, t0=null, dur=440;
+      programmatic=true;
+      function step(now){
+        if(t0===null) t0=now;
+        var p=Math.min(1,(now-t0)/dur);
+        track.scrollLeft = start + dist*easeInOut(p);
+        if(p<1){ animId=requestAnimationFrame(step); }
+        else { track.classList.remove('dragging'); programmatic=false; updateActive(); }
+      }
+      animId=requestAnimationFrame(step);
+    }
+    function snapTo(i, smooth){
+      if(!cards.length) return;
+      i = Math.max(0, Math.min(cards.length-1, i));
+      current = i;
+      var left = targetScroll(i);
+      if(smooth){ animateTo(left); }
+      else { cancelAnimationFrame(animId); track.scrollLeft = left; updateActive(); }
+    }
+    function go(i){ snapTo(i, true); }
+
+    /* react to native scrolling (touch fling, trackpad) */
+    var rafPending=false, idleTimer=null;
+    track.addEventListener('scroll', function(){
+      if(!rafPending){ rafPending=true; requestAnimationFrame(function(){ rafPending=false; updateActive(); }); }
+      if(dragging || programmatic || track.classList.contains('dragging')) return;
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(function(){
+        var i = centerIndex();
+        if(Math.abs(track.scrollLeft - targetScroll(i)) > 2) snapTo(i, true);
+      }, 110);
+    }, {passive:true});
+
+    prevBtn.addEventListener('click', function(){ go(centerIndex()-1); });
+    nextBtn.addEventListener('click', function(){ go(centerIndex()+1); });
+    window.addEventListener('keydown', function(e){
+      if(!cards.length) return;
+      var r = stage.getBoundingClientRect();
+      if(r.bottom<0 || r.top>window.innerHeight) return;
+      if(e.key==='ArrowLeft'){ go(centerIndex()-1); }
+      if(e.key==='ArrowRight'){ go(centerIndex()+1); }
+    });
+    window.addEventListener('resize', function(){ applyPadding(); snapTo(current, false); });
+
+    /* wheel: vertical/horizontal intent -> horizontal scroll */
+    var wheelTimer=null;
+    track.addEventListener('wheel', function(e){
+      if(!cards.length) return;
+      var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if(!delta) return;
+      var atStart = track.scrollLeft <= 1;
+      var atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+      if((delta < 0 && atStart) || (delta > 0 && atEnd)) return; /* let page scroll at edges */
+      e.preventDefault();
+      programmatic = false;
+      track.classList.add('dragging');   /* suspend snap while wheeling */
+      track.scrollLeft += delta;
+      window.clearTimeout(wheelTimer);
+      wheelTimer = window.setTimeout(function(){
+        track.classList.remove('dragging');
+        snapTo(centerIndex(), true);
+      }, 90);
+    }, {passive:false});
+
+    /* drag (mouse / pen) - touch uses native momentum scroll */
+    var dragging=false, startX=0, startScroll=0, moved=0;
+    track.addEventListener('pointerdown', function(e){
+      if(!cards.length || e.pointerType==='touch') return;
+      dragging=true; moved=0; startX=e.clientX; startScroll=track.scrollLeft;
+      track.classList.add('dragging');
+      try{ track.setPointerCapture(e.pointerId); }catch(_){}
+    });
+    track.addEventListener('pointermove', function(e){
+      if(!dragging) return;
+      var dx = e.clientX - startX; moved = dx;
+      track.scrollLeft = startScroll - dx;
+    });
+    function endDrag(){
+      if(!dragging) return;
+      dragging=false; track.classList.remove('dragging');
+      snapTo(centerIndex(), true);
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('click', function(e){
+      if(Math.abs(moved)>6){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+
+    /* deep-link via hash e.g. #realisations-instagram */
+    function checkHash(){
+      var h = location.hash.replace('#','');
+      var m = h.match(/^realisations-(\w+)$/);
+      if(m && META[m[1]]) setFilter(m[1]);
+    }
+
+    setFilter('all');
+    checkHash();
+
+    /* ============ PARALLAX (hero only) ============ */
+    (function(){
+      var hero = document.querySelector('.hero');
+      var floaties = [].slice.call(document.querySelectorAll('.floaty'));
+      if(!hero || !floaties.length) return;
+      var MAP = window.SOCIAL_LOGOS || {};
+      floaties.forEach(function(f){
+        var img = f.querySelector('img'); var key = img && img.dataset.logo;
+        if(img && key && MAP[key]) img.src = MAP[key];
+      });
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var ticking = false;
+      function render(){
+        ticking = false;
+        var y = window.pageYOffset || document.documentElement.scrollTop;
+        var h = hero.offsetHeight;
+        var prog = Math.min(1, Math.max(0, y / (h * 0.78)));
+        var fade = Math.max(0, 1 - prog);
+        var ease = fade * fade * (3 - 2 * fade); // smoothstep
+        floaties.forEach(function(f){
+          var sp = parseFloat(f.dataset.speed) || 0.2;
+          var ty = reduce ? 0 : (y * sp);
+          f.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0)';
+          f.style.opacity = ease.toFixed(3);
+          f.style.visibility = ease < 0.01 ? 'hidden' : 'visible';
+        });
+      }
+      function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(render); } }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', render);
+      render();
+    })();
+
+    /* ============ PARCOURS timeline ============ */
+    (function(){
+      var tl = document.getElementById('timeline');
+      if(!tl) return;
+      var items = [].slice.call(tl.querySelectorAll('.tl-item'));
+      var prog = document.getElementById('tlProgress');
+      var spine = tl.querySelector('.tl-spine');
+
+      // reveal on enter
+      if('IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, {threshold:0.18});
+        items.forEach(function(it){ io.observe(it); });
+      } else { items.forEach(function(it){ it.classList.add('in'); }); }
+
+      var ticking = false;
+      function render(){
+        ticking = false;
+        var rect = tl.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var anchor = vh * 0.5;
+        var raw = (anchor - rect.top) / rect.height;
+        var p = Math.max(0, Math.min(1, raw));
+        if(prog) prog.style.height = (p * 100).toFixed(2) + '%';
+        // node reached when its dot passes the anchor line
+        items.forEach(function(it){
+          var n = it.querySelector('.tl-node');
+          var nr = n.getBoundingClientRect();
+          it.classList.toggle('reached', nr.top + nr.height/2 <= anchor + 4);
+        });
+      }
+      function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(render); } }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', render);
+      render();
+    })();
+  })();
+  </script>
+
+
+  <!-- floating nav -->
+  <nav class="navwrap">
+    <div class="nav">
+      <a href="#accueil" class="active">Accueil</a>
+      <a href="#reseaux">Réseaux</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#14160b"/>
+      <path d="M5 55 C25 30, 40 80, 55 52 S 85 30, 98 55" fill="none" stroke="#cdd24c" stroke-width="6" stroke-linecap="round"/>
+      <text x="50" y="46" font-family="Archivo,sans-serif" font-weight="900" font-size="24" fill="#f4f3e9" text-anchor="middle">BD</text>
+    </svg>
+  </template>
+</body>
+</html>
