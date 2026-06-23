@@ -16,13 +16,26 @@
     <div class="inner">
       <a class="wordmark" href="#top">Baptiste David<span class="pt">.</span></a>
       <nav class="topnav" id="topnav">
-        <a href="#reseaux">Chiffres</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#parcours">Parcours</a>
-        <a href="#contact">Contact</a>
+        <a href="#reseaux"><span class="navnum">01</span> Performances</a>
+        <a href="#realisations"><span class="navnum">02</span> Réalisations</a>
+        <a href="#veille"><span class="navnum">03</span> Veille &amp; IA</a>
+        <a href="#parcours"><span class="navnum">04</span> Parcours</a>
+        <a href="#contact"><span class="navnum">05</span> Contact</a>
       </nav>
       <div class="topmeta"><span class="dot"></span><span class="lbl">Disponible - oct.&nbsp;2026</span></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </div>
+    <nav class="mobilenav" id="mobileNav" aria-label="Navigation principale">
+      <a href="#reseaux"><span class="navnum">01</span> Performances</a>
+      <a href="#realisations"><span class="navnum">02</span> Réalisations</a>
+      <a href="#veille"><span class="navnum">03</span> Veille &amp; IA</a>
+      <a href="#parcours"><span class="navnum">04</span> Parcours</a>
+      <a href="#contact"><span class="navnum">05</span> Contact</a>
+      <span class="mobilenav-meta"><span class="dot"></span> Disponible - oct.&nbsp;2026</span>
+    </nav>
   </header>
 
   <div class="wrap">
@@ -60,32 +73,68 @@
       </div>
     </section>
 
-    <!-- CHIFFRES -->
-    <section id="reseaux" class="section" data-screen-label="Chiffres">
+    <!-- PERFORMANCES -->
+    <section id="reseaux" class="section" data-screen-label="Performances">
       <div class="sec-head sec-head--split">
-        <p class="sec-num"><b>01</b> Chiffres</p>
+        <p class="sec-num"><b>01</b> Performances</p>
         <div class="sec-head-row">
-          <h2 class="sec-title">Neuf mois,<br/><em>4,01 millions</em> de personnes touchées.</h2>
+          <h2 class="sec-title">Neuf mois,<br/><em>3,65 millions</em> d'audience.</h2>
           <p class="sec-sub">Audience cumulée sur les réseaux de SANEF - production 100&nbsp;% organique, sans budget publicitaire. Le détail par plateforme&nbsp;:</p>
         </div>
       </div>
 
       <div class="stat-strip">
         <div class="stat">
-          <span class="stat-num" data-count="4.01" data-decimals="2"><span class="u">M</span></span>
-          <span class="stat-label">Personnes touchées · 9 mois</span>
+          <span class="stat-num" data-count="3.65" data-decimals="2"><span class="u">M</span></span>
+          <span class="stat-label">Audience · 9 mois</span>
         </div>
         <div class="stat">
           <span class="stat-num" data-count="100"><span class="u">%</span></span>
           <span class="stat-label">Production organique</span>
         </div>
         <div class="stat">
-          <span class="stat-num" data-count="6"></span>
+          <span class="stat-num" data-count="5"></span>
           <span class="stat-label">Réseaux pilotés</span>
         </div>
       </div>
 
       <div class="reseaux" id="reseaux-grid"></div>
+    </section>
+
+    <!-- OUTILS & IA -->
+    <section id="outils" class="section tools" data-screen-label="Outils">
+      <div class="tools-head">
+        <p class="tools-kicker">Boîte à outils</p>
+        <h2 class="tools-title">Outils maîtrisés</h2>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-group">
+          <p class="tool-cat">Création &amp; production</p>
+          <div class="tool-row">
+            <div class="tool"><span class="tool-logo"><img src="uploads/Canva_logo.svg.png" alt="Canva"></span><span class="tool-name">Canva</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/images.png" alt="Adobe Photoshop"></span><span class="tool-name">Photoshop</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/images1.png" alt="Adobe Premiere Pro"></span><span class="tool-name">Premiere Pro</span></div>
+            <div class="tool tool--text"><span class="tool-logo"><span class="tool-wordmark">CapCut</span></span></div>
+          </div>
+        </div>
+        <div class="tool-group">
+          <p class="tool-cat">Pilotage &amp; analytics</p>
+          <div class="tool-row">
+            <div class="tool"><span class="tool-logo"><img src="uploads/Meta_Platforms_Inc._logo.svg.png" alt="Meta Business Suite"></span><span class="tool-name">Meta Business Suite</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/Hootsuite-logo.png" alt="Hootsuite"></span><span class="tool-name">Hootsuite</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/Logo_Google_Analytics.svg.png" alt="Google Analytics"></span><span class="tool-name">Google Analytics</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/Talkwalker_logo.png" alt="Talkwalker"></span><span class="tool-name">Talkwalker</span></div>
+          </div>
+        </div>
+        <div class="tool-group">
+          <p class="tool-cat">IA &amp; workflow</p>
+          <div class="tool-row">
+            <div class="tool"><span class="tool-logo"><img src="uploads/claude-logo-cropped.png" alt="Claude"></span><span class="tool-name">Claude (Anthropic)</span></div>
+            <div class="tool"><span class="tool-logo"><img src="uploads/ChatGPT-Logo-Without-Background-Features-ChatGPT.png" alt="ChatGPT"></span><span class="tool-name">ChatGPT</span></div>
+            <div class="tool tool--text"><span class="tool-logo"><span class="tool-wordmark">Notion AI</span></span></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- RÉALISATIONS -->
@@ -122,13 +171,139 @@
       </div>
     </section>
 
+    <!-- APPROCHE TRANSVERSALE -->
+    <section id="approche" class="section approche" data-screen-label="Approche">
+      <div class="sec-head sec-head--split">
+        <p class="sec-num approche-kicker"><b>↗</b> Polyvalence</p>
+        <div class="sec-head-row">
+          <h2 class="sec-title">Un profil <em>transversal</em>,<br/>de l'idée à la donnée.</h2>
+          <p class="sec-sub">Je relie la création, le web et la performance sur une même chaîne : concevoir un contenu, le mettre en ligne proprement et le piloter par la data.</p>
+        </div>
+      </div>
+
+      <div class="approche-grid">
+        <article class="apr">
+          <span class="apr-idx">01</span>
+          <h3 class="apr-title">Création &amp; production</h3>
+          <p class="apr-desc">De l'idée au format publié : concepts éditoriaux, écriture, design et montage vidéo pour des contenus pensés pour leur audience.</p>
+          <ul class="apr-tags">
+            <li>Concepts créatifs</li>
+            <li>Design &amp; montage</li>
+            <li>Direction éditoriale</li>
+          </ul>
+        </article>
+
+        <article class="apr">
+          <span class="apr-idx">02</span>
+          <h3 class="apr-title">Web &amp; intégration</h3>
+          <p class="apr-desc">Intégration sur le site corporate SANEF : refonte de la FAQ et des pages « aires de service &amp; de repos ». Création et fusion de pages, contenus FR &amp; EN, publication, dépublication et redirections d'URL.</p>
+          <ul class="apr-tags">
+            <li>Intégration FR / EN</li>
+            <li>Gestion de pages</li>
+            <li>Redirections d'URL</li>
+          </ul>
+          <div class="apr-stats">
+            <div class="apr-stat"><b>814</b><span>pages intégrées FR &amp; EN</span></div>
+            <div class="apr-stat"><b>2</b><span>chantiers : FAQ + aires de service</span></div>
+          </div>
+        </article>
+
+        <article class="apr">
+          <span class="apr-idx">03</span>
+          <h3 class="apr-title">Data &amp; performance</h3>
+          <p class="apr-desc">Lecture des résultats pour décider : analyse des audiences, suivi des KPIs et ajustements continus de la stratégie de contenu.</p>
+          <ul class="apr-tags">
+            <li>Analytics</li>
+            <li>Reporting &amp; KPIs</li>
+            <li>Optimisation</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- VEILLE & IA -->
+    <section id="veille" class="section veille" data-screen-label="Veille">
+      <div class="sec-head sec-head--split">
+        <p class="sec-num"><b>03</b> Veille &amp; IA</p>
+        <div class="sec-head-row">
+          <h2 class="sec-title">Curieux, je me<br/><em>nourris</em> en continu.</h2>
+          <p class="sec-sub">Tester, analyser, recommencer. Je reste en veille active sur l'IA, le social media et le marketing digital - par les outils que j'expérimente, les newsletters que je décortique et les conférences qui nourrissent ma pratique au quotidien.</p>
+        </div>
+      </div>
+
+      <div class="feed-grid">
+        <article class="feed">
+          <span class="feed-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M12 19v2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M3 12h2M19 12h2M5.6 18.4 7 17M17 7l1.4-1.4"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+          <h3 class="feed-title">IA &amp; expérimentation</h3>
+          <p class="feed-desc">L'IA fait partie de ma façon de travailler : je teste les nouveaux outils, je les compare et j'intègre les plus pertinents à ma production de contenus.</p>
+          <ul class="feed-tags">
+            <li>ChatGPT &amp; Claude</li>
+            <li>Idéation &amp; production</li>
+            <li>Workflow augmenté</li>
+          </ul>
+        </article>
+
+        <article class="feed">
+          <span class="feed-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2V5z"/><path d="M19 9h2v8a2 2 0 0 1-2 2"/><path d="M8 9h7M8 13h7"/></svg></span>
+          <h3 class="feed-title">Veille &amp; newsletters</h3>
+          <p class="feed-desc">Je m'abonne, je teste et je décortique les meilleures newsletters social media, marketing et IA pour garder une longueur d'avance sur les tendances.</p>
+          <ul class="feed-tags">
+            <li>Newsletters</li>
+            <li>Tendances</li>
+            <li>Benchmarks</li>
+          </ul>
+        </article>
+
+        <article class="feed">
+          <span class="feed-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-5a3 3 0 0 1 6 0v5"/></svg></span>
+          <h3 class="feed-title">Conférences &amp; événements</h3>
+          <p class="feed-desc">Je me nourris régulièrement sur le terrain : conférences, tables rondes et festivals où se dessinent les pratiques de demain - du SEO au GEO, de la data à l'IA générative.</p>
+          <ul class="feed-tags">
+            <li>Stratégies Festival</li>
+            <li>Tables rondes</li>
+            <li>Networking</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="veille-gallery">
+        <div class="vg-row vg-row--a">
+          <figure class="vfig" style="flex:1.55">
+            <img src="assets/conferences/IMG_6581.jpg" alt="Table ronde Du SEO au GEO" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">CyberCité × J'ai un pote dans la com</span><span class="vc-tt">Du SEO au GEO : Global Search &amp; marketing digital</span></figcaption>
+          </figure>
+          <figure class="vfig" style="flex:1">
+            <img src="assets/conferences/IMG_6582.jpg" alt="Table ronde AI Search" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">CyberCité × J'ai un pote dans la com</span><span class="vc-tt">AI Search, Social Search &amp; Employee Advocacy</span></figcaption>
+          </figure>
+          <figure class="vfig" style="flex:0.92">
+            <img src="assets/conferences/IMG_4797.jpg" alt="Affiche Stratégies Festival 2025" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">Stratégies Festival 2025</span><span class="vc-tt">La créa &amp; le marketing dans le grand bain de l'IA</span></figcaption>
+          </figure>
+        </div>
+        <div class="vg-row vg-row--b">
+          <figure class="vfig" style="flex:1">
+            <img src="assets/conferences/IMG_6252.jpg" alt="Conférence GEO" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">Stratégies Festival</span><span class="vc-tt">GEO : comment craquer le code ?</span></figcaption>
+          </figure>
+          <figure class="vfig" style="flex:1.5">
+            <img src="assets/conferences/IMG_4808.jpg" alt="Conférence Intelligence augmentée" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">Stratégies Festival</span><span class="vc-tt">Intelligence augmentée : l'urgence de se former</span></figcaption>
+          </figure>
+          <figure class="vfig" style="flex:1">
+            <img src="assets/conferences/IMG_6580.jpg" alt="Table ronde Du SEO au GEO" loading="lazy" decoding="async" />
+            <figcaption><span class="vc-ev">CyberCité × J'ai un pote dans la com</span><span class="vc-tt">Table ronde - Du SEO au GEO</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- PARCOURS -->
     <section id="parcours" class="section" data-screen-label="Parcours">
       <div class="sec-head wide sec-head--split">
-        <p class="sec-num"><b>03</b> Parcours</p>
+        <p class="sec-num"><b>04</b> Parcours</p>
         <div class="sec-head-row">
           <h2 class="sec-title">Le fil de<br/>mon <em>expérience</em>.</h2>
-          <p class="sec-sub">Deux années d'alternance en Bac+5, au service de grandes marques - de la mutuelle santé à l'autoroute.</p>
         </div>
       </div>
 
@@ -153,7 +328,7 @@
             <div class="tl-period">Sept. 2025 - Oct. 2026</div>
             <div class="tl-role">Social Media Manager <span class="tl-badge">Alternance</span></div>
             <div class="tl-org"><span class="tl-logo">S</span> SANEF - Concessionnaire &amp; gestionnaire d'autoroutes</div>
-            <p class="tl-desc">Pilotage de la ligne éditoriale sur 6 réseaux : conception de concepts créatifs, production et programmation des contenus, animation et modération des communautés, puis analyse des performances pour optimiser la stratégie.</p>
+            <p class="tl-desc">Pilotage de la ligne éditoriale sur 5 réseaux : conception de concepts créatifs, production et programmation des contenus, animation et modération des communautés, puis analyse des performances pour optimiser la stratégie.</p>
             <ul class="tl-skills">
               <li>Ligne éditoriale multi-réseaux</li>
               <li>Community management</li>
@@ -164,7 +339,7 @@
             </ul>
             <div class="tl-metric">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>
-              <span><b>4,01 M</b> d'audience cumulée en 9 mois · 100&nbsp;% organique</span>
+              <span><b>3,65 M</b> d'audience cumulée en 9 mois · 100&nbsp;% organique</span>
             </div>
           </div>
         </article>
@@ -202,7 +377,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section contact" data-screen-label="Contact">
       <div class="sec-head sec-head--split">
-        <p class="sec-num"><b>04</b> Contact</p>
+        <p class="sec-num"><b>05</b> Contact</p>
         <div class="contact-top">
           <h2 class="contact-title">Travaillons<br/><em>ensemble.</em></h2>
           <p class="contact-intro">Une opportunité, une question, ou simplement l'envie d'échanger&nbsp;? Écris-moi via le formulaire, ou en direct.</p>
@@ -277,28 +452,28 @@
   (function(){
     /* ============ DATA - Réalisations (production SANEF) ============ */
     var POSTS = [
-      { plateforme:"instagram", shot:"uploads/Accidents%20sur%20l'autoroute.PNG", titre:"Accidents sur l'autoroute", theme:"Face cachée", vues:14200, reach:7700 },
-      { plateforme:"instagram", shot:"uploads/Insolite%20serpent.PNG", titre:"Le serpent mystère", theme:"Insolite", vues:27800, reach:15800 },
-      { plateforme:"instagram", shot:"uploads/Sauvetage%20spitz.jpeg", titre:"Sauvetage d'un spitz", theme:"Insolite", vues:2100, reach:1500 },
-      { plateforme:"instagram", shot:"uploads/Fourgons.PNG", titre:"Dans les coulisses : les fourgons", theme:"Face cachée", vues:25000, reach:19400 },
-      { plateforme:"instagram", shot:"uploads/IMG_6659.PNG", titre:"Quiz - Est-ce que ?", theme:"Insolite", vues:120000, reach:81700 },
-      { plateforme:"instagram", shot:"uploads/travaux%20bretelle%20A1.PNG", titre:"Travaux bretelle A1", theme:"Face cachée", vues:95500, reach:61900 },
-      { plateforme:"instagram", shot:"uploads/Corridor%20de%20se%CC%81curite%CC%81.PNG", titre:"Corridor de sécurité", theme:"Sécurité routière", vues:61900, reach:34400 },
-      { plateforme:"instagram", shot:"uploads/Neige%20de%CC%81but%20Janvier%201.PNG", titre:"Neige début janvier", theme:"Vie du réseau", vues:43800, reach:29200 },
-      { plateforme:"instagram", shot:"uploads/IA%20Fourgon.PNG", titre:"IA - Sanefus Prime", theme:"Insolite", vues:123000, reach:80800 },
-      { plateforme:"instagram", shot:"uploads/Nid%20de%20poule%20chausse%CC%81e.PNG", titre:"Rebouchage de nid de poule", theme:"Vie du réseau", vues:7200, reach:3400 },
-      { plateforme:"instagram", shot:"uploads/Peintures%20aires%20les%20Genie%CC%80vres%20A4.PNG", titre:"Peintures - aire des Genièvres", theme:"Insolite", vues:44900, reach:20100 },
-      { plateforme:"instagram", shot:"uploads/Travaux.PNG", titre:"Chantier de nuit sur l'A1", theme:"Vie du réseau", vues:3900, reach:1900 },
-      { plateforme:"instagram", shot:"uploads/OTH.PNG", titre:"Ouvrage hydraulique", theme:"Face cachée", vues:30400, reach:19300 },
-      { plateforme:"instagram", shot:"uploads/Quiz%20Pont.PNG", titre:"Quiz - les piles du pont", theme:"Face cachée", vues:3600, reach:2100 },
-      { plateforme:"instagram", shot:"uploads/Neige%20de%CC%81but%20Janvier%202.PNG", titre:"Les saleuses en action", theme:"Vie du réseau", vues:47900, reach:35300 },
-      { plateforme:"instagram", shot:"uploads/Le%20tigre%20.PNG", titre:"Le tigre", theme:"Face cachée", vues:2800, reach:1800 },
-      { plateforme:"instagram", shot:"uploads/Rater%20sa%20sortie.PNG", titre:"Rater sa sortie", theme:"Insight", vues:11700, reach:8100 },
-      { plateforme:"instagram", shot:"uploads/Taille%20bord%20d'autoroute.PNG", titre:"Taille des bords d'autoroute", theme:"Vie du réseau", vues:2400, reach:1100 },
-      { plateforme:"instagram", shot:"uploads/Archives.PNG", titre:"Quand naissaient les autoroutes", theme:"Insolite", vues:162000, reach:109000 },
-      { plateforme:"instagram", shot:"uploads/Immersion%20radio.PNG", titre:"Immersion radio Sanef 107.7", theme:"Vie de la radio", vues:16700, reach:12000 },
-      { plateforme:"instagram", shot:"uploads/IMG_6658.PNG", titre:"Coulisses du réseau", theme:"Face cachée", vues:15700, reach:10700 },
-      { plateforme:"instagram", shot:"uploads/Renovation%20chausse%CC%81e.PNG", titre:"Rénovation de chaussée", theme:"Vie du réseau", vues:2400, reach:1600 },
+      { plateforme:"instagram", shot:"assets/posts/ig-accidents.jpg", titre:"Accidents sur l'autoroute", theme:"Face cachée", vues:14200, reach:7700 },
+      { plateforme:"instagram", shot:"assets/posts/ig-serpent.jpg", titre:"Le serpent mystère", theme:"Insolite", vues:27800, reach:15800 },
+      { plateforme:"instagram", shot:"assets/posts/ig-spitz.jpg", titre:"Sauvetage d'un spitz", theme:"Insolite", vues:2100, reach:1500 },
+      { plateforme:"instagram", shot:"assets/posts/ig-fourgons.jpg", titre:"Dans les coulisses : les fourgons", theme:"Face cachée", vues:25000, reach:19400 },
+      { plateforme:"instagram", shot:"assets/posts/ig-img6659.jpg", titre:"Quiz - Est-ce que ?", theme:"Insolite", vues:120000, reach:81700 },
+      { plateforme:"instagram", shot:"assets/posts/ig-bretelle.jpg", titre:"Travaux bretelle A1", theme:"Face cachée", vues:95500, reach:61900 },
+      { plateforme:"instagram", shot:"assets/posts/ig-corridor.jpg", titre:"Corridor de sécurité", theme:"Sécurité routière", vues:61900, reach:34400 },
+      { plateforme:"instagram", shot:"assets/posts/ig-neige1.jpg", titre:"Neige début janvier", theme:"Vie du réseau", vues:43800, reach:29200 },
+      { plateforme:"instagram", shot:"assets/posts/ig-ia.jpg", titre:"IA - Sanefus Prime", theme:"Insolite", vues:123000, reach:80800 },
+      { plateforme:"instagram", shot:"assets/posts/ig-nid.jpg", titre:"Rebouchage de nid de poule", theme:"Vie du réseau", vues:7200, reach:3400 },
+      { plateforme:"instagram", shot:"assets/posts/ig-peintures.jpg", titre:"Peintures - aire des Genièvres", theme:"Insolite", vues:44900, reach:20100 },
+      { plateforme:"instagram", shot:"assets/posts/ig-travaux.jpg", titre:"Chantier de nuit sur l'A1", theme:"Vie du réseau", vues:3900, reach:1900 },
+      { plateforme:"instagram", shot:"assets/posts/ig-oth.jpg", titre:"Ouvrage hydraulique", theme:"Face cachée", vues:30400, reach:19300 },
+      { plateforme:"instagram", shot:"assets/posts/ig-quizpont.jpg", titre:"Quiz - les piles du pont", theme:"Face cachée", vues:3600, reach:2100 },
+      { plateforme:"instagram", shot:"assets/posts/ig-neige2.jpg", titre:"Les saleuses en action", theme:"Vie du réseau", vues:47900, reach:35300 },
+      { plateforme:"instagram", shot:"assets/posts/ig-tigre.jpg", titre:"Le tigre", theme:"Face cachée", vues:2800, reach:1800 },
+      { plateforme:"instagram", shot:"assets/posts/ig-rater.jpg", titre:"Rater sa sortie", theme:"Insight", vues:11700, reach:8100 },
+      { plateforme:"instagram", shot:"assets/posts/ig-taille.jpg", titre:"Taille des bords d'autoroute", theme:"Vie du réseau", vues:2400, reach:1100 },
+      { plateforme:"instagram", shot:"assets/posts/ig-archives.jpg", titre:"Quand naissaient les autoroutes", theme:"Insolite", vues:162000, reach:109000 },
+      { plateforme:"instagram", shot:"assets/posts/ig-radio.jpg", titre:"Immersion radio Sanef 107.7", theme:"Vie de la radio", vues:16700, reach:12000 },
+      { plateforme:"instagram", shot:"assets/posts/ig-img6658.jpg", titre:"Coulisses du réseau", theme:"Face cachée", vues:15700, reach:10700 },
+      { plateforme:"instagram", shot:"assets/posts/ig-renovation.jpg", titre:"Rénovation de chaussée", theme:"Vie du réseau", vues:2400, reach:1600 },
 
       /* ============ Facebook (production SANEF) ============ */
       { plateforme:"facebook", shot:"assets/posts/fb-insolite.png", titre:"Le serpent de l'autoroute", theme:"Insolite", vues:1029677, reach:628040 },
@@ -335,6 +510,58 @@
       { plateforme:"tiktok", shot:"assets/posts/tt-radio.png", titre:"Immersion radio Sanef 107.7", theme:"Vie de la radio", vues:595, reach:499 },
       { plateforme:"tiktok", shot:"assets/posts/tt-rater.png", titre:"Rater sa sortie d'autoroute", theme:"Insight", vues:340, reach:304 }
     ];
+
+    /* ============ LIGNE ÉDITORIALE (par réalisation) ============ */
+    var EDITO = {
+      "Accidents sur l'autoroute":{brief:"Montrer la réalité du travail des agents lors d'un accident.",intention:"Sensibiliser à la dangerosité du métier et au respect des intervenants."},
+      "Le serpent mystère":{brief:"Relayer une découverte animale insolite faite sur le réseau.",intention:"Surprendre l'audience et nourrir l'image vivante de l'autoroute."},
+      "Sauvetage d'un spitz":{brief:"Raconter le sauvetage d'un chien égaré sur la chaussée.",intention:"Émouvoir et incarner le rôle protecteur des équipes."},
+      "Dans les coulisses : les fourgons":{brief:"Faire découvrir l'équipement des fourgons d'intervention.",intention:"Valoriser le savoir-faire technique des agents de terrain."},
+      "Quiz - Est-ce que ?":{brief:"Tester les idées reçues du public sur l'autoroute.",intention:"Créer de l'interaction et corriger les croyances erronées."},
+      "Travaux bretelle A1":{brief:"Documenter un chantier de réfection d'une bretelle.",intention:"Rendre lisible l'utilité des travaux pour les usagers."},
+      "Corridor de sécurité":{brief:"Expliquer le geste du corridor de sécurité.",intention:"Faire adopter un réflexe qui protège les intervenants."},
+      "Neige début janvier":{brief:"Couvrir la mobilisation des équipes pendant un épisode neigeux.",intention:"Rassurer les usagers et montrer l'anticipation des équipes."},
+      "IA - Sanefus Prime":{brief:"Mettre en scène un fourgon avec une touche d'IA créative.",intention:"Moderniser l'image de marque et capter une audience jeune."},
+      "Rebouchage de nid de poule":{brief:"Filmer une intervention de réparation de la chaussée.",intention:"Prouver la réactivité de l'entretien au quotidien."},
+      "Peintures - aire des Genièvres":{brief:"Révéler une fresque artistique sur une aire de repos.",intention:"Donner envie de s'arrêter et soigner l'expérience de pause."},
+      "Chantier de nuit sur l'A1":{brief:"Suivre un chantier mené de nuit pour limiter la gêne.",intention:"Montrer une organisation pensée pour préserver le trafic."},
+      "Ouvrage hydraulique":{brief:"Expliquer le rôle d'un ouvrage hydraulique sous l'autoroute.",intention:"Éveiller la curiosité sur les infrastructures invisibles."},
+      "Quiz - les piles du pont":{brief:"Interroger le public sur la construction d'un pont.",intention:"Stimuler l'engagement par le jeu et la pédagogie."},
+      "Les saleuses en action":{brief:"Montrer les saleuses déployées en conditions hivernales.",intention:"Démontrer la préparation des équipes face au gel."},
+      "Le tigre":{brief:"Partager une anecdote insolite repérée sur le réseau.",intention:"Susciter le sourire et l'envie de partager."},
+      "Rater sa sortie":{brief:"Rebondir sur une situation vécue par tous les conducteurs.",intention:"Créer de la connivence autour d'un réflexe du quotidien."},
+      "Taille des bords d'autoroute":{brief:"Documenter l'entretien des espaces verts en bord de voie.",intention:"Valoriser un travail discret au service de la sécurité."},
+      "Quand naissaient les autoroutes":{brief:"Plonger dans les archives de construction du réseau.",intention:"Ancrer la marque dans une histoire et un patrimoine."},
+      "Immersion radio Sanef 107.7":{brief:"Faire découvrir les coulisses de la radio 107.7.",intention:"Renforcer le lien de proximité avec les auditeurs."},
+      "Coulisses du réseau":{brief:"Ouvrir les portes des métiers de l'autoroute.",intention:"Humaniser la marque par celles et ceux qui la font."},
+      "Rénovation de chaussée":{brief:"Montrer une opération de rénovation de la chaussée.",intention:"Illustrer l'investissement continu dans le réseau."},
+      "Le serpent de l'autoroute":{brief:"Relayer une découverte animale insolite sur le réseau.",intention:"Surprendre une large communauté et générer du partage."},
+      "Le métier d'agent autoroutier":{brief:"Valoriser le métier d'agent autoroutier auprès du grand public.",intention:"Créer de la proximité et casser les clichés sur le secteur."},
+      "Remplacement des panneaux sur l'A1":{brief:"Suivre le remplacement des panneaux de signalisation.",intention:"Montrer l'attention portée à la lisibilité de la route."},
+      "Le panneau à message variable":{brief:"Expliquer le fonctionnement des panneaux à message variable.",intention:"Aider les usagers à mieux lire les informations en temps réel."},
+      "Sanefus Prime, le fourgon IA":{brief:"Mettre en scène un fourgon avec une touche d'IA créative.",intention:"Moderniser l'image de marque et capter une audience large."},
+      "À quoi sert le cône ?":{brief:"Décrypter l'utilité d'un simple cône de signalisation.",intention:"Transmettre un message de sécurité de façon accessible."},
+      "Nettoyage post-accident":{brief:"Montrer la remise en état du réseau après un accident.",intention:"Rappeler les risques et valoriser l'engagement des équipes."},
+      "Le corridor de sécurité":{brief:"Rappeler le geste du corridor de sécurité.",intention:"Ancrer un réflexe qui protège les intervenants."},
+      "Alerte neige sur le réseau":{brief:"Diffuser une alerte météo et les consignes associées.",intention:"Informer vite et inciter à la prudence."},
+      "Découverte à l'aire des Genièvres":{brief:"Faire découvrir une curiosité sur l'aire des Genièvres.",intention:"Donner envie de prolonger la pause et d'explorer."},
+      "L'aire de Rosny Sud":{brief:"Présenter les services de l'aire de Rosny Sud.",intention:"Valoriser le confort offert aux voyageurs."},
+      "Les couches d'une autoroute":{brief:"Décomposer la structure technique d'une autoroute.",intention:"Faire comprendre la complexité cachée sous la route."},
+      "Curage d'un ouvrage hydraulique":{brief:"Filmer le curage d'un ouvrage d'évacuation des eaux.",intention:"Montrer l'entretien essentiel mais méconnu du réseau."},
+      "Le totem Bienvenue 107.7":{brief:"Mettre en avant un totem de l'antenne 107.7.",intention:"Renforcer la notoriété de la radio du réseau."},
+      "Rater sa sortie d'autoroute":{brief:"Rebondir sur une situation vécue par tous les conducteurs.",intention:"Créer de la connivence autour d'un réflexe du quotidien."},
+      "Dans les coulisses de l'autoroute":{brief:"Montrer les coulisses du réseau en format court.",intention:"Capter une audience jeune avec un contenu rythmé."},
+      "La maison qui saigne de Saint-Quentin":{brief:"Surfer sur un lieu insolite proche du réseau.",intention:"Jouer sur la curiosité locale et l'effet de surprise."},
+      "La face cachée de l'autoroute":{brief:"Dévoiler ce que les usagers ne voient jamais.",intention:"Nourrir la curiosité et l'image d'un réseau vivant."}
+    };
+    function editoBlock(p){
+      var e = EDITO[p.titre];
+      if(!e) return '';
+      return '<div class="pedito">'+
+        '<p class="pedito-line"><span class="pedito-k">Brief</span>'+e.brief+'</p>'+
+        '<p class="pedito-line"><span class="pedito-k">Intention</span>'+e.intention+'</p>'+
+      '</div>';
+    }
 
     /* ============ ICONS ============ */
     var IC = {
@@ -445,7 +672,6 @@
           : statusBar+renderApp(p);
         frame =
           '<div class="iphone"><div class="island"></div>'+
-            '<span class="pbadge">'+IC[p.plateforme]+m.name+'</span>'+
             '<div class="screen">'+screen+'</div>'+
           '</div>';
       }
@@ -459,6 +685,7 @@
             '<div class="metric"><div class="ml">Vues</div><div class="mv">'+fmtNum(p.vues)+'</div></div>'+
             ((p.reach!=null&&p.reach!=="")?'<div class="metric"><div class="ml">Comptes touchés</div><div class="mv">'+fmtNum(p.reach)+'</div></div>':'')+
           '</div>'+
+          editoBlock(p)+
         '</div>';
       return el;
     }
@@ -503,7 +730,7 @@
       b.innerHTML =
         '<div class="rIcon">'+IC[k]+'</div>'+
         '<div class="rName">'+m.name+'</div>'+
-        '<div class="rNum">'+m.num+'<span class="u">'+m.u+'</span></div>'+
+        '<div class="rNum" data-count="'+m.num.replace(',','.')+'" data-decimals="'+((m.num.split(',')[1]||'').length)+'"><span class="u">'+m.u+'</span></div>'+
         '<span class="rGo">'+(count>0?count+' réalisation'+(count>1?'s':''):'Bientôt en ligne')+' '+IC.arrow+'</span>';
       b.addEventListener('click', function(){
         setFilter(k);
@@ -660,7 +887,7 @@
 
     /* ============ STATS count-up ============ */
     (function(){
-      var nums = [].slice.call(document.querySelectorAll('.stat-num[data-count]'));
+      var nums = [].slice.call(document.querySelectorAll('.stat-num[data-count], .rNum[data-count]'));
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function fmt(v, dec){
         return v.toFixed(dec).replace('.', ',');
@@ -689,12 +916,40 @@
       } else { nums.forEach(run); }
     })();
 
+    /* ============ MENU MOBILE ============ */
+    (function(){
+      var bar = document.querySelector('.topbar');
+      var btn = document.getElementById('navToggle');
+      var mnav = document.getElementById('mobileNav');
+      if(!bar || !btn || !mnav) return;
+      function close(){ bar.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Ouvrir le menu'); }
+      btn.addEventListener('click', function(){
+        var open = bar.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open?'true':'false');
+        btn.setAttribute('aria-label', open?'Fermer le menu':'Ouvrir le menu');
+      });
+      mnav.addEventListener('click', function(e){ if(e.target.closest('a')) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    })();
+
+    /* ============ SECTION HEAD reveal au scroll ============ */
+    (function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('js-reveal');
+      var heads = [].slice.call(document.querySelectorAll('.sec-head, .tools-head'));
+      var io = new IntersectionObserver(function(en){
+        en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {threshold:0.2, rootMargin:'0px 0px -8% 0px'});
+      heads.forEach(function(h){ io.observe(h); });
+    })();
+
     /* ============ NAV active state ============ */
     (function(){
       var links = [].slice.call(document.querySelectorAll('#topnav a'));
       var map = {};
       links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
-      var secs = ['reseaux','realisations','parcours','contact']
+      var secs = ['reseaux','realisations','veille','parcours','contact']
         .map(function(id){ return document.getElementById(id); }).filter(Boolean);
       if(!('IntersectionObserver' in window)) return;
       var io = new IntersectionObserver(function(en){
@@ -758,7 +1013,7 @@
           return;
         }
         var subject = 'Contact portfolio - ' + name;
-        var body = msg + '\n\n—\n' + name + '\n' + email;
+        var body = msg + '\n\n--\n' + name + '\n' + email;
         var href = 'mailto:baptistedavid0@gmail.com'+
           '?subject='+encodeURIComponent(subject)+
           '&body='+encodeURIComponent(body);
