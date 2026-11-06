@@ -35,3 +35,11 @@
 .lg-word .dots{display:inline-block;width:.34em;height:.11em;margin-left:.06em;border-radius:.06em;background:#e4ef1d;
   transform-origin:left;animation:lgDots .5s cubic-bezier(.34,1.56,.64,1) var(--d2) both}
 @keyframes lgDots{from{transform:scaleX(0)}to{transform:none}}
+
+/* Mode intro liquide : le logo final est statique, le liquide fait l'animation */
+.logo-hold{position:relative}
+.lg-liquid{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.lg5.static{position:relative;opacity:0}
+.lg5.static .pc,.lg5.static .lg-root{animation:none;opacity:1}
+.lg5.static .ph-zoom{animation-duration:2.6s}
+@keyframes phZoom{from{transform:scale(1.25)}to{transform:none}}

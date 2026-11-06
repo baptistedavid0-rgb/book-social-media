@@ -20,10 +20,10 @@ body.render{background:#f1f1ec;display:block}
 body.render .wrap{width:1080px;height:1080px}
 body.render .controls{display:none}
 .row{display:flex;align-items:center;gap:44px;position:relative}
-.logo-hold{width:400px;animation:hold .95s cubic-bezier(.65,0,.35,1) 1.6s both}
+.logo-hold{width:400px;animation:hold 1s cubic-bezier(.65,0,.35,1) 3.35s both}
 @keyframes hold{from{transform:translateX(var(--shift)) scale(1.55)}to{transform:none}}
 .lg-word{font-size:104px}
-.tag{font-size:23px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5a606c;position:relative;animation:tag .8s cubic-bezier(.16,1,.3,1) 3.1s both}
+.tag{font-size:23px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5a606c;position:relative;animation:tag .8s cubic-bezier(.16,1,.3,1) 4.8s both}
 @keyframes tag{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .controls{display:flex;align-items:center;gap:12px;width:min(100vw - 32px, 100vh - 90px);color:#cfd3db;font:600 14px "Plus Jakarta Sans",sans-serif}
 .controls button{background:#e4ef1d;color:#10141c;border:0;border-radius:99px;height:36px;padding:0 16px;font:inherit;cursor:pointer}
@@ -36,17 +36,21 @@ body.render .controls{display:none}
   <div class="row">
     <div class="logo-hold" id="hold"></div>
     <div class="lg-word" id="word">
-      <span class="mask"><span style="--d:2.3s">5 pattes</span></span>
-      <span class="mask"><span style="--d:2.45s">digitales<i class="dots" style="--d2:2.95s"></i></span></span>
+      <span class="mask"><span style="--d:4.05s">5 pattes</span></span>
+      <span class="mask"><span style="--d:4.2s">digitales<i class="dots" style="--d2:4.7s"></i></span></span>
     </div>
   </div>
   <div class="tag">Stratégie digitale &amp; communication 360°</div>
 </div></div>
-<div class="controls"><button id="play">Pause</button><button id="restart">↺</button><input id="scrub" type="range" min="0" max="6.5" step="0.01" value="0"><output id="time">0.0 s</output></div>
+<div class="controls"><button id="play">Pause</button><button id="restart">↺</button><input id="scrub" type="range" min="0" max="8" step="0.01" value="0"><output id="time">0.0 s</output></div>
 <script src="logo-5pattes.js"></script>
+<script src="logo-liquid.js"></script>
 <script>
-document.getElementById('hold').innerHTML = Logo5P.svg({id:'lgA'});
+const hold = document.getElementById('hold');
+hold.innerHTML = Logo5P.svg({id:'lgA', cls:'static'});
+hold.style.setProperty('--t0', '2.2s');
+Logo5PLiquid.mount(hold, {id:'liqA', T0:.25});
 </script>
-<script src="player.js" data-duration="6.5"></script>
+<script src="player.js" data-duration="8"></script>
 </body>
 </html>

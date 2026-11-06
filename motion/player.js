@@ -19,6 +19,7 @@
   function seek(t){
     t = Math.max(0, Math.min(DURATION, t));
     for (const a of anims) a.currentTime = t * 1000;
+    (window.__seekHooks || []).forEach(f => f(t));
     for (const c of counters){
       const p = easeOut(Math.max(0, Math.min(1, (t - c.start) / c.dur)));
       c.el.textContent = c.pre + Math.round(c.from + (c.to - c.from) * p) + c.suf;
