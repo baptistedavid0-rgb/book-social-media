@@ -1,0 +1,37 @@
+/* Animation du logo — délais relatifs à --t0 (secondes absolues de la timeline) */
+.lg5{display:block;overflow:visible}
+.lg5 .pc,.lg5 .lg-root,.lg5 .ph-zoom,.lg5 .lg-shine{transform-box:view-box}
+.lg5 .pc{opacity:0;animation-duration:1s;animation-fill-mode:both;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+.lg5 .pc-e{transform-origin:440px 650px;animation-name:pcE;animation-delay:calc(var(--t0) + 0s)}
+.lg5 .pc-d{transform-origin:360px 525px;animation-name:pcD;animation-delay:calc(var(--t0) + .12s)}
+.lg5 .pc-c{transform-origin:630px 806px;animation-name:pcC;animation-delay:calc(var(--t0) + .26s)}
+.lg5 .pc-b{transform-origin:800px 808px;animation-name:pcB;animation-delay:calc(var(--t0) + .36s)}
+.lg5 .pc-a{transform-origin:550px 200px;animation-name:pcA;animation-delay:calc(var(--t0) + .5s);animation-duration:1.05s}
+
+@keyframes pcE{0%{opacity:0;transform:translate(-360px,360px) rotate(-30deg) scale(.3)}25%{opacity:1}65%{transform:translate(10px,-10px) rotate(4deg) scale(1.06)}100%{opacity:1;transform:none}}
+@keyframes pcD{0%{opacity:0;transform:translate(-420px,330px) rotate(-12deg)}25%{opacity:1}68%{transform:translate(14px,-11px) rotate(1.5deg)}100%{opacity:1;transform:none}}
+@keyframes pcC{0%{opacity:0;transform:translateY(420px) scaleY(.4)}25%{opacity:1}62%{transform:translateY(-14px) scaleY(1.06)}100%{opacity:1;transform:none}}
+@keyframes pcB{0%{opacity:0;transform:translate(360px,420px) rotate(14deg)}25%{opacity:1}66%{transform:translate(-8px,-10px) rotate(-1.5deg)}100%{opacity:1;transform:none}}
+@keyframes pcA{0%{opacity:0;transform:translate(620px,-180px) skewX(-22deg)}25%{opacity:1}64%{transform:translate(-16px,4px) skewX(3deg)}100%{opacity:1;transform:none}}
+
+/* impact quand tout est en place */
+.lg5 .lg-root{transform-origin:610px 425px;animation:lgThump .7s cubic-bezier(.3,0,.2,1) calc(var(--t0) + 1.18s) both}
+@keyframes lgThump{0%,100%{transform:none}30%{transform:scale(1.035)}}
+/* la photo intérieure recule doucement (profondeur) */
+.lg5 .ph-zoom{transform-origin:900px 470px;animation:phZoom 3.2s cubic-bezier(.16,1,.3,1) calc(var(--t0) + .1s) both}
+@keyframes phZoom{from{transform:scale(1.5)}to{transform:none}}
+/* reflet qui balaie le logo */
+.lg5 .lg-shine{animation:lgShine 1s cubic-bezier(.45,0,.2,1) calc(var(--t0) + 1.3s) both}
+@keyframes lgShine{from{transform:translateX(0)}to{transform:translateX(1700px)}}
+/* feux des voitures en mouvement continu */
+.lg5 .lg-car{stroke-dasharray:24 170;animation:lgCar var(--dur) linear 0s infinite}
+@keyframes lgCar{from{stroke-dashoffset:var(--off)}to{stroke-dashoffset:calc(var(--off) - 194px)}}
+
+/* wordmark */
+.lg-word{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.95;color:#10141c}
+.lg-word .mask{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.lg-word .mask>span{display:inline-block;animation:lgRise .9s cubic-bezier(.16,1,.3,1) var(--d) both}
+@keyframes lgRise{from{transform:translateY(115%)}to{transform:none}}
+.lg-word .dots{display:inline-block;width:.34em;height:.11em;margin-left:.06em;border-radius:.06em;background:#e4ef1d;
+  transform-origin:left;animation:lgDots .5s cubic-bezier(.34,1.56,.64,1) var(--d2) both}
+@keyframes lgDots{from{transform:scaleX(0)}to{transform:none}}
